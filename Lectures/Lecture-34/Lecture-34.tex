@@ -1,0 +1,81 @@
+\begin{proof}
+	Given any \(\eps>0\), use point-wise continuity at each \(x\in\mc{X}\) to get \(\delta=\delta(x)>0\) such that \(x'\in\ball{x}{\delta(x)}\), i.e., \(d(f(x),f(x'))<\displaystyle\frac{\eps}{5}\). Now, \(\ms{G}:=\left\{\displaystyle\ball{x}{\frac{1}{7}\delta(x)}\st x\in\mc{X}\right\}\) is an open cover for \(\mc{X}\); compactness gives us a finite subcover with labels \(x_1,x_2,\dots x_N\). Let \(\delta_k(x):=\delta(x_k)\) and thus \(\delta:=\displaystyle\frac{1}{7}\text{min}\{\delta_1,\dots,\delta_N\}\). Now, we pick any \(x\in\mc{X},x'\in\ball{x}{\delta}\). From the finite subcover, our \(x\in\ball{x_k}{\displaystyle\frac{1}{7}\delta_k}\). Also, \(x'\) has 
+	\begin{align*}
+		d(x',x_k)\leq& d(x',x)+d(x,x_k)\\
+					<& \delta+\frac{1}{7}\delta_k\leq\frac{2}{7}\delta_k<\delta_k,
+	\end{align*}
+	so 
+	\begin{align*}
+		d(f(x'),f(x))\leq& d(f(x'),f(x_k))+d(f(x_k),f(x))\\
+						<& \frac{\eps}{5}+\frac{\eps}{5}<\eps.
+	\end{align*}
+\end{proof}
+
+\begin{example}
+	An increasing function \(f:\R\to\R\) that is continuous at \(x\) if and only if \(x\notin\Q\) (we have encountered this function before in Homework 11 problem 6.) We enumerate the rationals \(\Q=\{q_1,q_2,\dots\}\)):
+	\begin{equation*}
+		f(x)=\sum_{i\in I(x)} \frac{1}{2^i},
+	\end{equation*}
+	where \(I(x):=\{i\in\N\st q_i<x\}\).
+	\begin{note}
+		If \(a<b\), then 
+		\begin{equation*}
+			f(b)-f(a)=\sum_{I(a)\backslash I(b)} \frac{1}{2^i}>0,
+		\end{equation*}
+		where \(I(b)\backslash I(a):=\{i\in\N\st a\leq q_i<b\}\neq\emptyset\).
+	\end{note}
+	If \(x\in\Q\), then we have \(x=q_N\) for some \(N\). For any sequence \((x_n)\) of rationals with \(x_n\to q_N\) (decreasing), \(f(x_n)>f(q_N)+\displaystyle\frac{1}{2^N}\), so ``\(f(x_n)\to f(x)\)" is impossible. However, if \(x\notin\Q\), continuity at \(x\) holds. Indeed, given any \(\eps>0\), pick \(N\) to make
+	\begin{equation*}
+		\sum_{i=N+1}^{\infty}\frac{1}{2^i}<\eps.
+	\end{equation*}
+	Then, let \(\delta:=\text{min}\{|x-q_1|,|x-q_2|,\dots,|x-q_N|\}\). For any \(x'\) with \(|x'-x|<\delta\), all of \(q_1,\dots,q_N\) lie \emph{outside} \((x-\delta,x+\delta)\), so 
+	\begin{equation*}
+		|f(x')-f(x)|\leq \sum_{i=N+1}^{\infty}\frac{1}{2^i}<\eps.
+	\end{equation*}
+\end{example}
+
+\subsection{Connectedness and Intermediate Value Theorem}
+\begin{proposition}{}
+	Let \((\mc{X},\ms{T})\) be a HTS, and suppose \(f:\mc{X}\to\R\) is continuous. For any \(q\in\R\), let
+	\begin{equation*}
+		\Omega(q):=\{x\in\mc{X}\st f(x)<q\}.
+	\end{equation*}
+	Then, \(\doe\Omega(q)\subseteq\{x\in\mc{X}\st f(x)=q\}\).
+\end{proposition}
+\begin{proof}
+	The proof is left as an exercise while using the canvas notes as a reference.
+\end{proof}
+\begin{note}
+	Strict inclusion is possible.
+\end{note}
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=1.5]
+		\draw[Latex-Latex] (-2,0)--(2,0);
+		
+		\node[below] at (2,0) {\(x\)};
+		
+		\draw[Latex-Latex] (0,-2)--(0,2);
+		
+		\node[left] at (0,2) {\(y\)};
+		
+		\draw[-, thick, smooth, samples = 100, domain=-1.27:1.27, variable = \x] plot(\x, {\x*(\x+1)*(\x-1)^2});
+		
+		\draw[{[scale=0.7]Latex}-{[scale=0.7]Latex}, very thick, red] (-1,0)--(0,0);
+		
+		\node[above] at (-0.5,0) {\(\color{red}\Omega(0)\)};
+	\end{tikzpicture}
+	\caption{Plot of the function \(y=x(x+1)(x-1)^2\), where \(\Omega(0)=(-1,0)\) is highlighted.}
+\end{figure}
+\begin{note}[Comments on the plot]
+	In the plot above, \(\Omega(0)=(-1,0)\), \(\doe\Omega(0)=\{-1,0\}\), but \(f^{-1}(\{0\})=\{-1,0,1\}\).
+\end{note}
+\begin{corollary}
+	In the setup above, if \(\Omega(q)\neq\emptyset\), and yet \(f(x)\neq q\) for all \(x\in\mc{X}\), then \(\Omega(q)\) is both open and closed in \(\mc{X}\).
+\end{corollary}
+\begin{proof}
+	\(\Omega(q)\) is \emph{open} by continuity;
+	\begin{equation*}
+		\ol{\Omega(q)}=\Omega(q)\cup \doe\Omega(q)=\Omega(q).
+	\end{equation*}
+\end{proof}

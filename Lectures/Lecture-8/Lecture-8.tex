@@ -1,0 +1,40 @@
+\begin{nquote}{}
+	Some girl: ``Are you going to expect this on the exam?"
+	
+	\smallskip
+	
+	Dr. Loewen: ``Yes."
+	
+	\smallskip
+	
+	Girl: ``Oh no." - 22/09/2023
+\end{nquote}
+
+Recall that when we say that a limit \emph{diverges}, we are saying that for all \(\hat{x}\in\R\), there exists \(\eps>0\) and for all \(n\in\N\), there exists \(n>N\) such that \(|x_n-\hat{x}|\geq\eps\).
+\begin{example}
+	Show that \(x_n=(-1)^n\) diverges.
+\end{example}
+\begin{proof}
+	To begin, we fix some \(\hat{x}\in\R\) and pick \(\eps=1\). Fix \(N\in\N\). Now, consider an even \(n_e\) and an odd \(n_o\) such that \(n_e>N,~n_o>N\). Thus, \(x_{n_e}=(-1)^{n_e}=1\) and \(x_{n_o}=(-1)^{n_o}=-1\). Thus, 
+	\begin{align*}
+		2=|x_{n_e}-x_{n_o}|\leq&|(x_{n_e}-\hat{x})+(\hat{x}-x_{n_o})|\\
+		\leq&|x_{n_e}-\hat{x}|+|x_{n_o}-\hat{x}|.
+	\end{align*}
+	One of the terms on the RHS is \(\geq 1\). One of \(n=n_e\) or \(n=n_o\) completes the proof.
+\end{proof}
+
+\clearpage
+
+\section{The Squeeze Theorem}
+Let \((a_n),~(x_n),~(b_n)\) be real-valued sequences, and \(L\in\R\). Assume
+\begin{enumerate}[(a)]
+	\item \(a_n\to L\) as \(n\to\infty\).
+	
+	\item \(b_n\to L\) as \(n\to\infty\).
+	
+	\item \(a_n\leq x_n\leq b_n\) for all \(n>N\).
+\end{enumerate}
+Then, \(x_n\to L\) as \(n\to\infty\).
+\begin{proof}
+	Given \(\eps>0\), use (a) to get \(N_a\in\N\) such that \(|a_n-L|<\eps\) for all \(n>N_a\). This implies \(a_n>L-\eps\). Use (b) to get \(N_b\in\N\) such that \(|b_n-L|<\eps\) for all \(n>N_b\). This implies \(b_b<L+\eps\). Use (c) to get \(N_c\in\N\) such that \(a_n\leq x_n\leq b_n\) for all \(n>N_c\). Now, if \(N=\operatorname{max}\{N_a,N_b,N_c\}\), every \(n>N\) does 3 things: \(L-\eps< a_n\leq x_n\leq b_n<L+\eps\), i.e., \(|x_n-L|<\eps\).
+\end{proof}

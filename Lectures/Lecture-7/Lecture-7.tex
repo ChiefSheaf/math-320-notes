@@ -1,0 +1,104 @@
+\begin{nquote}{}
+	``Do you know about Dressew downtown on Hastings street? It's amazing. This where people who know how to make things with fabric go." - Dr. Philip Loewen, 09/20/2023
+	
+	\medskip
+	
+	``There are politics jokes ready here -- `no matter how far to the right we start out, a point further right will escape the tolerance band.'" - Dr. Philip Loewen, 09/20/2023
+\end{nquote}
+
+\section{Sequences and Limits}
+\begin{ndef}{: Sequence}
+	A \emph{\textbf{sequence}} in a given set \(\mc{X}\) is simply a \textit{function} \(x:\N\to \mc{X}\). We will often write \(x_n\) instead fo \(x(n)\) and list the values. 
+	\begin{example}
+		\(x=(x_1,x_2,x_3,\dots)\).
+	\end{example}
+\end{ndef}
+The order of a sequence matters; the \textit{sequence} \(x_n=(x_1,x_2,x_3,\dots)\) is different from the \emph{set} \(\{x_1,x_2,x_3,\dots\}\).
+\begin{example}
+	Consider \(x_n=(-1)^{n+1}\) for \(n\in\N\). This sequence has the set \(\{(-1)^{n+1}\st n\in\N\}=\{-1,+1\}\).
+\end{example}
+\begin{ndef}{: Convergence}
+	Given a sequence \((x_n)_{n\in\N}\) and a point \(\hat{x}\), all in \(\mc{X}\in\R\), saying the sequence \((x_n)\) \emph{\textbf{converges}} to \(\hat{x}\) means for all \(\eps>0\) there exists \(N\in\N\) such that for all \(n\in\N\), \(|x_n-\hat{x}|<\eps\).
+	
+	\medskip
+	
+	In a simplified form, a real-valued sequence \((x_n)_{n\in\N}\) \emph{\textbf{converges}} when 
+	\begin{equation*}
+		\text{there exists}~\hat{x}\in\R~\text{such that}\lim_{n\to\infty}x_n=\hat{x}.
+	\end{equation*}
+\end{ndef}
+\begin{notation}
+	When this happens, we write 
+	\begin{equation*}
+		\hat{x}=\lim_{n\to\infty}x_n~~\text{or}~~\underset{\text{as}~n\to\infty}{x_n\to\infty}~~\text{or}~~x_n\xrightarrow[n\to\infty]{}\hat{x}.
+	\end{equation*}
+\end{notation}
+\begin{ndef}{: Divergence}
+	A sequence is said to \emph{\textbf{diverge}} when it \textit{does not} converge.
+	
+	\medskip
+	
+	Concretely, \((x_n)_{n\in\N}\) diverges iff for all \(\hat{x}\in\R\) there exists \(\eps>0\), and for all \(N\in\N\) there exists \(n>N\) such that \(|x_n-\hat{x}|\geq \eps\).
+\end{ndef}
+\begin{example}
+	Some simple examples that showcase the above definitions are:
+	\begin{enumerate}[(a)]
+		\item \(x_n=\displaystyle\frac{1}{n}\) converges to \(\hat{x}=0\). 
+		\begin{proof}
+			Given \(\eps>0\), note \(\displaystyle\frac{1}{\eps}\in\R\) and Archimedes says there exists \(n\in\N\) such that \(N>\displaystyle\frac{1}{\eps}\). For any \(n>N\) we will have 
+			\begin{equation*}
+				|x_n-\hat{x}|=\left|\frac{1}{n}-0\right|=\frac{1}{n}<\frac{1}{N}<\eps.
+			\end{equation*}
+		\end{proof}
+		
+		\item If \(x_n=1\) converges to \(\hat{x}=1\).
+		\begin{proof}
+			Given \(\eps>0\) pick \(N=320\). Clearly, every \(n>N\) makes \(|x_n-\hat{x}|=0<\eps\).
+		\end{proof}
+	\end{enumerate}
+\end{example}
+Now, 
+\begin{example}
+	Consider some slightly harder examples:
+	\begin{enumerate}[(a)]
+		\item Suppose
+		\begin{equation*}
+			x_n=\frac{\sin{n}}{1+n+n^2+n^3+n^4+n^5}.
+		\end{equation*}
+		For every \(n\in\N\), 
+		\begin{equation*}
+			|x_n-\hat{x}|=\frac{|\sin{n}|}{1+n+n^2+\dots+n^5}<\frac{1}{0+n+0+\dots+0}.
+		\end{equation*}
+		Furthermore, \(\displaystyle\frac{1}{n}<\eps\) whenever \(n>\displaystyle\frac{1}{\eps}\). We pick some \(N>\displaystyle\frac{1}{\eps}\) and every \(n>N\) will have \(\displaystyle\frac{1}{n}<\eps\) and make \(|x_n-\hat{x}|<\eps\).
+		\begin{note}
+			For efficiency, keeping \(n^5\) rather than \(n\) would give a much smaller \(N\). However, we don't particularly care about efficiency, we prioritize \emph{existence}. 
+		\end{note}
+		
+		\item The sequence \(x_n=\displaystyle\frac{n^2-320^{3/2}}{2n^2-801}\) converges to \(\hat{x}=\displaystyle\frac{1}{2}\).
+		
+		\begin{proof}
+			Given \(\eps>0\), choose integer \(N\geq\operatorname{max}\left\{30,\displaystyle\left(\frac{750}{\eps}\right)^2\right\}\). We see that every for \(n>\), \(n>30\implies n^2>900\), giving us \(2n^2-801=n^2+(n^2-801)>n^2\).
+			
+			\medskip
+			
+			By Archimedean property, \(\sqrt{n}>\displaystyle\frac{750}{\eps}\), if \(n>N\),
+			\begin{align*}
+				|x_n-\hat{x}|=&\left|\frac{n^2-320n^{3/2}}{2n^2-801}-\frac{1}{2}\right|\\
+							 =&\left|\frac{2(n^2-320^{3/})-(2n^2-801)}{2(2n^2-801)}\right|\\
+							 \leq&\frac{640n^{3/2}+801}{2(2n^2-801)}~(\text{by triangle inequality}),\\
+							 \leq&\frac{640n^{3/2}+801n^{3/2}}{2n^2}\\
+							 <&\frac{1500n^{3/2}}{2n^2}=\frac{750}{\sqrt{n}}\\
+							 <&\frac{750}{750/\eps}=\eps,~\text{as required}.
+			\end{align*} 
+		\end{proof}
+		
+		\item \(\displaystyle\lim_{n\to\infty}n^{\frac{1}{n}}=1\).
+		\begin{proof}
+			Define \(x_n=\displaystyle n^{\frac{1}{n}}-1\); each \(x_n>0\). Recall that by the binomial theorem, \((1+a)^n=1+na+\displaystyle\frac{n(n-1)}{2}a^2+\dots+na^{n-1}+a^n\); thus, 
+			\begin{equation*}
+				(1+a)^n\geq \frac{n(n-1)}{2}a^2~\text{for all}~a\geq 0.
+			\end{equation*}
+			Thus, when \(n\geq 2\), we have \(x_n>0\), i.e., \(n=(1+x_n)^n\geq\displaystyle\frac{n(n-1)}{2}x_n^2\implies 0<x_n^2<\displaystyle\frac{2}{n(n-1)}n\), i.e., \(x_n\leq\displaystyle\sqrt{\frac{2}{n-1}}\). Thus, we solve for \(\displaystyle\sqrt{\frac{2}{n-1}}<\eps\) for \(\displaystyle\frac{2}{n-1}<\eps^2\iff \frac{2}{\eps^2}<n-1\). So, choosing \(N\geq \operatorname{max}\left\{2,1+\displaystyle\frac{2}{\eps^2}\right\}\) is what we require.
+		\end{proof}
+	\end{enumerate}
+\end{example}

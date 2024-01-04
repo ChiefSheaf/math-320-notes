@@ -1,0 +1,77 @@
+\clearpage
+\section{Testing for convergence}
+\begin{ntheorem}{: Monotone convergence}
+	If \(a_n\geq 0\) for all \(n\), then \(\displaystyle\sum_{n\in\N}a_n\) converges iff \(S_N=\displaystyle\sum_{n=1}^N a_n\) is bounded.
+\end{ntheorem}
+\begin{proof}
+	Note that \(S_{N+1}-S_N=a_{N+1}\geq 0\) shows that \(S_N\) is a non-decreasing sequence; rest follows from monotone convergence property. In this case \(``\displaystyle\sum_{n\in\N}a_n\) converges."
+\end{proof}
+\begin{ntheorem}{: Cauchy's Criterion}
+	The series \(S=\displaystyle\sum_{n\in\N}a_n\) converges iff for all \(\eps>0\) there exists \(N\in\N\) such that for all \(m\geq N\), and for all \(p\in\N\cup\{0\}\), we have
+	\begin{equation*}
+		|a_m+a_{m+1}+\dots+a_{m+p}|<\eps.
+	\end{equation*}
+\end{ntheorem}
+\begin{proof}
+	Notice that \(a_m+\dots+a_{m+p}=S_{m+p}-S_{m-1}\); this states condition is just a reformulation of Cauchy's criterion for seq of partial sums, where we have already shown that the sequence of partial sums is Cauchy.
+\end{proof}
+\begin{ntheorem}{: Test for divergence}
+	If \(\displaystyle\lim_{n\to\infty}a_n\neq 0\), or the limit does not exist, then \(\displaystyle\sum_{n\in\N}a_n\) diverges.
+\end{ntheorem}
+\begin{note}
+	This \emph{\textbf{does not}} say that the sequence converges, and is merely a relatively quick test to check whether a sequence \emph{diverges} or not; equivalently, we are saying that the converse of this statement is not generally true.
+\end{note}
+\begin{proof}
+	We prove this by contrapositive. If \(\displaystyle\sum_{n\in\N}a_n\) converges, pick any \(\eps>0\) and use Cauchy's criterion to get a \(N\in\N\) such that \(|a_m+\dots+a_{m+p}|<\eps\) for all \(m\geq N\), and for all \(p\in\N\cup\{0\}\). Use \(p=0\): for all \(m\geq N\), \(|a_m|<\eps\implies a_n\to 0\).
+\end{proof}
+
+\begin{ntheorem}{: Comparison test}
+	\begin{enumerate}[(a)]
+		\item If \(0\leq |a_n|\leq b_n\) for all \(n\in\N\) and \(\displaystyle\sum_{n\in\N}b_n<+\infty\), then \(\displaystyle\sum_{n\in\N}a_n\) converges.
+		
+		\item If \(\displaystyle\sum_{n\in\N}|a_n|=+\infty\), then \(\displaystyle\sum_{n\in\N}|b_n|=+\infty\) as well.
+	\end{enumerate}
+	\begin{comment}
+		\begin{enumerate}[(a)]
+			\item If \(0\leq |a_n|\leq b_n\) for all \(n\in\N\) and \(\displaystyle\sum_{n\in\N}b_n<+\infty\), then \(\displaystyle\sum_{n\in\N}a_n\) converges.
+			
+			\item If \(\displaystyle\sum_{n\in\N}|a_n|=+\infty\), then \(\displaystyle\sum_{n\in\N}|b_n|=+\infty\) as well.
+		\end{enumerate}
+	\end{comment}
+\end{ntheorem}
+\begin{proof}
+	For part (a), we use Cauchy's criterion and the triangle inequality to get 
+	\begin{align*}
+		|a_m+\dots+a_{m+p}|\leq& |a_m|+|a_{m+1}|+\dots+|a_{m+p}|\\
+		\leq&b_m+b_{m+1}+\dots+b_{m+p}.
+	\end{align*}
+	We now use Cauchy's criterion for \((b_n)\) to provide requirements for \(\displaystyle\sum_{n\in\N}a_n\) to converge.
+	
+	\medskip
+	
+	The proof for (b) is left as an exercise.
+\end{proof}
+\begin{corollary}
+	Absolute convergence implies convergence; if \(\displaystyle\sum_{n\in\N}|a_n|<+\infty\), then \(\displaystyle\sum_{n\in\N}a_n<+\infty\).
+\end{corollary}
+Proof for this is the same as for the theorem where we set \(b_n=|a_n|\).
+\begin{note}
+	Convergence for sequence \(S_N=\displaystyle\sum_{n=1}^Na_n\) holds iff we have convergence fo each \(S_N^m=\displaystyle\sum_{n=m}^N a_i\); writing \begin{align*}
+		\sum_{n\in\N}a_n=&\sum_n^\infty a_n\\
+		=&\sum a_n
+	\end{align*}
+	is abuse of notation.
+\end{note}
+\begin{example}
+	Harmonic series \(\displaystyle\sum_n\frac{1}{n}\) diverges.
+	\begin{proof}
+		Show Cauchy's criterion fails: there exists \(\eps>0\) such that for all \(N\in\N\), there exists \(m\geq N\) and \(p\in\N\cup\{0\}\) such that 
+		\begin{equation*}
+		|a_m+\dots+a_{m+p}|\geq\eps.
+		\end{equation*}
+		Pick \(\eps=\displaystyle\frac{1}{2}\), for any \(N\in\N\), choose \(n=N\), \(p=N\) which gives us 
+		\begin{equation*}
+			\frac{1}{N}+\frac{1}{N+1}+\dots+\frac{1}{N+N}\geq \frac{N+1}{2N}>\frac{1}{2}=\eps.
+		\end{equation*}
+	\end{proof}
+\end{example}

@@ -1,0 +1,88 @@
+\begin{nquote}{}
+	``After the math conference mathematicians go to the bar. The first one says can I get a beer, the second one says can I get half a beer, the third one says can I get a quarter of a beer, and so on. The bartender slams two beers on the counter, and says `figure it out yourself!'." - Dr. Loewen, 10/16/2023
+\end{nquote}
+
+\begin{ntheorem}{: Archimedean property}
+	The set \(\N\) has no upper bound in \(\R\).
+\end{ntheorem}
+\begin{proof}
+	For the sake of contradiction, suppose that \(\N\) has an upper bound; consider \(\alpha=\sup(\N)\). In this case, \(\alpha-\displaystyle\frac{1}{2}\) cannot be an upper bound (by the definition of the supremum), i.e., there exists some \(n\in\N\) such that \(\alpha-\displaystyle\frac{1}{2}<n\). However, this gives us \(n+1>n+\displaystyle\frac{1}{2}>\alpha\implies\alpha\) is not an upper bound, and therefore not the supremum; contradiction. Hence, \(\N\) is not bounded. 
+\end{proof}
+\begin{note}
+	This seems like a very obvious fact, but we need some work because there can be cases where this breaks down. One of them is mentioned in the example that follows.
+\end{note}
+\begin{example}
+	Let \(\ms{F}\) be the set of rational functions \(f\st\R\to\Q[x]\) (here \(\Q[x]\) denotes the set of all polynomials with rational coefficients) such that,
+	\begin{equation*}
+		f(x)=\frac{p_0+p_1x+\dots+p_mx^m}{q_0+q_1x+\dots+xq_nx^n}
+	\end{equation*} 
+	To define an \emph{order}, say \(``f>0"\) when some representation as above has \(\displaystyle\frac{p_m}{q_n}>0\); equivalently, \(f(x)>0\) for sufficiently large \(x\). The constants in the numerator and denominator show that \(\Q\) is a sub-field of \(\ms{F}\) with a well defined \(``<"\). However, we get a contradiction, since the function \(f(x)=x\) is an upper bound for \(\N\). The proof for this is fairly elementary where for each \(n\), we have \(f(x)-n>0\) for \(x>n\). We are not saying that the set \(\N\) has a supremum; this is clearly false. However, this does not mean that we cannot find an upper bound. Since the range of the function \(f(x)=x\) is the rational numbers, it includes the natural numbers, so for every natural number we have a greater natural number (this fact needs no proof.) However, this does not imply there's a supremum because while this upper bound is technically ``increasing" (it is not exactly; we just find larger values in the range), the exists no numerical value that can serve as the supremum.
+\end{example}
+
+\clearpage
+
+\section{Series}
+\begin{ndef}{: Series}
+	Given a sequence \((a_n)\) in \(\R\), the corresponding \emph{\textbf{series}} is the new sequence \(s_1,s_2,\dots\) defined by 
+	\begin{equation*}
+		s_n=\sum_{k=1}^{n}a_k.
+	\end{equation*}
+	The ``sum" is 
+	\begin{equation*}
+		S'=\lim_{n\to\infty}s_n=\lim_{n\to\infty}\sum_{k=1}^n a_k,
+	\end{equation*}
+	denoted 
+	\begin{equation*}
+		S=\sum_{k=1}^{\infty}a_k,\quad\text{or}~S=\sum_{k\in\N}a_k.
+	\end{equation*}
+\end{ndef} 
+A series \emph{converges} when \(S\in\R\) and \emph{diverges} otherwise. Some divergent series can be described with extended values \(\pm\infty\).
+\begin{note}
+	The key point is ``some" can be described this way because saying that they diverge \emph{and} are one of \(\pm\infty\) is more than saying that they diverge; we are describing \emph{how} they diverge.
+\end{note}
+\subsection{Geometric series}
+For any real \(r\), 
+\begin{align*}
+	(1-r)(1+r+r^2+\dots+r^n)=&1+r+r^2+\dots+r^n-r-r^2-\dots-r^n-r^{n+1}\\
+	=&1-r^{n+1}\\
+	\implies 1+r+r^2+\dots+r^n=&\frac{1-r^{n+1}}{1-r}\quad(\text{when}~r\neq 1).
+\end{align*}
+Thus, 
+\begin{equation*}
+	\sum_{k\in\N}r^k=\begin{cases}
+						\displaystyle\lim_{n\to\infty}\frac{1-r^{n+1}}{1-r},&\text{if}~r\neq 1\\\
+						\displaystyle\lim_{n\to\infty}(n+1),&\text{if}~r=1
+					 \end{cases},
+\end{equation*}
+i.e., 
+\begin{equation*}
+	\sum_{k\in\N}r^k=\begin{cases}
+		\displaystyle\frac{1}{1-r},&\text{if}~|r|<1\\\
+		+\infty,&\text{if}~r>1\\
+		\text{DNE},&\text{if}~r<-1
+	\end{cases}.
+\end{equation*}
+Alternatively, we define \(f(x)=\displaystyle\sum_{k\in\N}x^k\). Then, Domain\((f)=(-1,1)\), and \(f(x)=\displaystyle\frac{1}{1-x}\).
+\begin{note}
+	It is generally tricky to look at a series and find the value it exactly converges to, but we can often talk about the domain it converges in.
+\end{note}
+\begin{example}
+	Consider 
+	\begin{equation*}
+		\sum_{n\in\N}\frac{2}{4n^2-1}=1.
+	\end{equation*}
+	Using partial fractions, we have 
+	\begin{equation*}
+		\frac{2}{4n^2-1}=\frac{1}{2n-1}-\frac{1}{2n+1},
+	\end{equation*}
+	so clearly, this is ``telescoping", i.e., all the terms except a select few cancel out:
+	\begin{align*}
+		\sum_{n=1}^n\frac{2}{4n^2-1}=&\sum_{n\in\N}\left[\frac{1}{2n-1}-\frac{1}{2n+1}\right]\\
+		=&\frac{1}{2}-\bcancel{\frac{1}{3}}+\bcancel{\frac{1}{3}}-\bcancel{\frac{1}{4}}+\bcancel{\frac{1}{4}}+\dots-\bcancel{\frac{1}{2n-1}}+\bcancel{\frac{1}{2n-1}}-\frac{1}{2n+1}\\
+		=&\frac{1}{2}-\frac{1}{2n+1},
+	\end{align*}
+	as as we take the limit as \(n\to\infty\), we get 
+	\begin{equation*}
+		\sum_{n\in\N}\frac{2}{4n^2-1}=\frac{1}{2}.
+	\end{equation*}
+\end{example}

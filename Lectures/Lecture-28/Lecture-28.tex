@@ -1,0 +1,95 @@
+\begin{ntheorem}{: Heine-Borel Theorem}
+	In \(\R^k\) (with the usual topology), for a subset \(\mc{K}\subseteq\R^k\), the following are equivalent:
+	\begin{enumerate}[(a)]
+		\item \(\mc{K}\) is compact.
+		
+		\item \(\mc{K}\) is closed and bounded.
+	\end{enumerate}
+\end{ntheorem}
+
+\begin{proof}
+	(a\(\Rightarrow\)b) This is a general fact about metric spaces.
+	
+	\medskip
+	
+	(b\(\Rightarrow\)a) We know that compactness \(\iff\) sequential compactness in a metric space, so we start with a list of sequences \(x^{(n)}=(x_1^{(n)},x_2^{(n)},\dots,x_k^{(n)})\) in \(\mc{K}\). The sequence in the first component is \((x_1^{(n)})\) is a bounded sequence in \(\R\), so by Bolzano-Weierstrass theorem, there exists a convergent sub-sequence; let this sub-sequence converge to \(\hat{x}_1\). Similarly, the \(i^{\text{th}}\) component is also bounded, so there exists a sub-sequence converging to \(\hat{x}_i\). After repeating this process of extracting and nesting sub-sequences \(k\) times, we get that \(x^{(n_j)}\to(\hat{x}_1,\hat{x}_2,\dots,\hat{x}_k)\) as \(j\to\infty\). The list of limits of sequences is in \(\mc{K}\) because \(\mc{K}\) is closed, and hence contains all of its limit points. Thus, \(\mc{K}\) is sequentially compact\(\iff\mc{K}\) is compact. 
+\end{proof}
+
+\subsection*{Things to be cautious about}
+\begin{enumerate}
+	\item In any HTS \((\mc{X},\ms{T})\), set \(\mc{X}\) is closed. What about the HTS where \(\mc{X}=(0,1)\) in \(\R\) and \(\ms{T}\) comes from the usual metric on \(\R\). This is a metric space, so \(\mc{X}\) is closed \emph{in itself, but \textbf{not} in} \(\R\); it is bounded and a subset of \(\R\), yet \emph{\textbf{not compact}}. We require closed in \(\R^k\) to make this work.
+	
+	\item Convergence of sequences can be defined in a general HTS, but in that context compactness is not equivalent to sequential compactness.
+\end{enumerate}
+
+\subsection{Completeness}
+
+\begin{ndef}{: Cauchy sequence and Complete space}
+	Let \((\mc{X},d)\) be a metric space. 
+	\begin{enumerate}[(a)]
+		\item A sequence \((x_n)\) in \(\mc{X}\) is \emph{\textbf{Cauchy}} iff for all \(\eps>0\), there exists \(N\in\N\) such that for all \(m,n>N\), \(d(x_m,x_n)<\eps\).
+		
+		\item The space \((\mc{X},d)\) is called \emph{\textbf{complete}} exactly when every Cauchy sequence in \(\mc{X}\) converges in \(\mc{X}\).
+	\end{enumerate}
+\end{ndef}
+
+\begin{example}
+	\((\R,|\cdot|)\) is complete, but \((\Q,|\cdot|)\) is not complete.
+\end{example}
+Some facts about Cauchy sequences:
+\begin{enumerate}[(i)]
+	\item Every convergent sequence is Cauchy.
+	
+	\item Every Cauchy sequence is bounded.
+	
+	\item If a Cauchy sequence has a subsequence that converges, then the full original sequence converges to the same limit.
+\end{enumerate}
+\begin{note}
+	We have already done all this before in \(\R\); the proofs for these are very similar in general metric spaces.
+\end{note}
+
+\begin{ntheorem}{: Rudin 3.11 (b)}
+	Every compact metric space is complete.
+\end{ntheorem}
+\begin{proof}[Proof sketch]
+	Compact\(\iff\) sequentially compact; we start with a Cauchy sequence, get a convergent subsequence (since the space is compact), we use property (iii) to conclude the proof.
+\end{proof}
+\begin{example}
+	Consider the sequence space 
+	\begin{equation*}
+		\l^{\infty}=\left\{x=(x_1,x_2,x_3,\dots)\mathrel{:}\sup_j|x_j|<+\infty\right\}
+	\end{equation*}
+	Let \(d(x,y)=\displaystyle\sup_j|x_j-y_j|\), which we have shown is a metric in Homework 5 problem 8. This \((\l^{\infty},d)\) is complete.
+\end{example}
+\begin{proof}
+	Let \((x^{(n)})_{n\in\N}\) be a Cauchy sequence in \(\l^{\infty}\). We must show it converges. Convergence in \(\l^{\infty}\) is:
+	\begin{equation*}
+		\text{For all}~\eps>0,~\text{there exists}~N\in\N~\text{such that for all}~m,n>N,~\sup_j\left|x_j^{(m)}-x_j^{(n)}\right|<\eps.
+	\end{equation*}
+	For each particular \(j\in\N\), this implies the Cauchy property for the real-values sequence in slot \(j\), i.e., \((x_j^{(n)})_{n\in\N}\). Hence, by completeness of \(\R\), \(x_j=\displaystyle\lim_{n\to\infty}x_j^{(n)}\) exists in \(\R\). Repeat for each \(j\) to get \(\hat{x}=(\hat{x}_1,\hat{x}_2,\hat{x}_3,\dots)\)
+	\begin{claim}
+		\(\hat{x}\in\l^{\infty}\).
+	\end{claim}
+	\begin{proof}
+		We use Cauchy property (ii): the original sequence \((x^{(n)})\) must be bounded, so some \(M>0\) obeys \(x^{(n)}\in\B[0;M]\), where \(0=(0,0,0,\dots)\in\l^{\infty}\), i.e., \(\displaystyle\sup_j\left|x_j^{(n)}\right|\leq M\) for each \(n\). We fix \(j\) and let \(n\to\infty\) to get \(|\hat{x}_j|\leq M\). Hence, we see that indeed \(\hat{x}\in\B[0;M]\subseteq\l^{\infty}\).
+	\end{proof}
+	\begin{claim}
+		\(d(x^{(n)},\hat{x})\to 0\).
+	\end{claim}
+	\begin{proof}
+		We require:
+		\begin{equation*}
+			\text{For all}~\eps>0,~\text{there exists}~N\in\N~\text{such that for all}~n>N,~\sup_j\left|x_j^{(n)}-\hat{x}_j\right|<\eps.
+		\end{equation*}
+		Fix some \(\eps>0\), and use \(\eps'=\displaystyle\frac{\eps}{2}\) in the original Cauchy property. Estimate
+		\begin{align*}
+			\left|x_j^{(n)}-\hat{x}_j\right|\leq&\left|x_j^{(n)}-x_j^{(m)}\right|+\left|x_j^{(m)}-\hat{x}_j\right|\\
+			<&\eps'+\left|x_j^{(m)}-\hat{x}_j\right|
+		\end{align*}
+		for all \(m,n>N'\), where \(N'\) comes from \(\eps'\) via the Cauchy property shown above. Now, let \(m\to\infty\) on both sides:
+		\begin{equation*}
+			\left|x_j^{(n)}-\hat{x}_j\right|\leq \frac{\eps}{2}<\eps;
+		\end{equation*}
+		this holds for all \(n>N'\). Next, taking \(\displaystyle\sup_j\) on both sides, we get \(d(x^{(n)},\hat{x})<\eps\), as required.
+	\end{proof}
+\end{proof}

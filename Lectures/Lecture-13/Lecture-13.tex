@@ -1,0 +1,31 @@
+\subsection{Laws for the limes superior and limes inferior}
+Let \(x_n\) be a real-valued sequence:
+\begin{enumerate}[(a)]
+	\item 
+	\begin{equation*}
+		\liminf_{n\to\infty}x_n\leq \limsup_{n\to\infty}x_n.
+	\end{equation*}
+	
+	\item For \(L\in\R\), have \(\displaystyle\lim_{n\to\infty}x_n=L\) iff \(\displaystyle\liminf_{n\to\infty}x_n=\displaystyle\limsup_{n\to\infty}x_n=L\).
+\end{enumerate}
+We will prove these facts in a later class.
+
+\begin{proposition}
+	Let \((x_n)\) be a real-valued sequence; we define 
+	\begin{align*}
+		\mu=&\liminf_{n\to\infty}x_n\\
+		\nu=&\limsup_{n\to\infty}x_n.
+	\end{align*}
+	\begin{enumerate}[(a)]
+		\item If \(\displaystyle\lim_{n\to\infty}x_{n_k}=l\) for some sub-sequence \((x_{n_k})\), then \(\mu\leq l\leq \nu\).
+		
+		\item There exists sub-sequences \((x_{n_j})\) and \((x_{n_k})\) of \((x_n)\) along which \(\mu=\displaystyle\lim_{j\to\infty}x_{n_j}=l\) and \(\nu=\displaystyle\lim_{k\to\infty}x_{n_k}=l\).
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Let \(T_n=\{x_n,x_{n+1},x_{n+2},\dots\}\); define \(i_n:=\inf(T_n)=\displaystyle\inf_{k\geq n}x_k\) and \(s_n:=\sup(T_n)=\displaystyle\sup_{k\geq n}x_k\).
+	\begin{enumerate}[(a)]
+		\item For each \(k\in\N\), \(x_{n_k}\geq \inf\{x_j:j\geq n_k\}=i_{n_k}\). As \(k\to\infty\), we have \(x_{n_k}\to l\) and \(i_{n_k}\to \mu\implies l\geq \mu\). Similarly, \(x_{n_k}\leq s_{n_k}\) for all \(k\), so \(l\leq M\).
+	\end{enumerate}
+\end{proof}

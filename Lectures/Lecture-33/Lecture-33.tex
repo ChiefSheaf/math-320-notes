@@ -1,0 +1,209 @@
+\begin{nquote}{}
+	(Said with hopium) ``Everything is fine; we still have three lectures, we can do the derivative." - Dr. Loewen, 11/29/2023
+\end{nquote}
+
+\clearpage
+
+\begin{example}
+	Some examples of the two definitions of continuity are:
+	\begin{enumerate}[(a)]
+		\item On \(\mc{X}=(0,+\infty)\), \(f(x)=\displaystyle\frac{1}{x}\).
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=1.5]
+				\draw[Latex-Latex, thick] (0,-0.5)--(0,3);
+				
+				\node[left] at (0,3) {\(y\)};
+				
+				\node[below] at (3,0) {\(x\)};
+				
+				\draw[Latex-Latex, thick] (-0.5,0)--(3,0);
+				
+				\draw[red] (-0.2,2) [curve through = {(0,2.1)}] to (0.2,2);
+				
+				\node[left] at (-0.2,2) {\(\color{red} b\)};
+				
+				\draw[red] (-0.2,1.4) [curve through = {(0,1.3)}] to (0.2,1.4);
+				
+				\node[left] at (-0.2,1.4) {\(\color{red} a\)};
+				
+				\draw[-, very thick, red] (0,1.3)--(0,2.1);
+				
+				\node[left] at (-0.3,1.7) {\color{red}\(\mc{U}=(a,b)\)};
+				
+				\draw[-, thick, smooth, samples = 100, domain=0.35:2.8, variable = \x] plot(\x, {1/\x});
+				
+				\draw[-, dashed, very thick] (0,2.1)--(0.48,2.1);
+				
+				\draw[-, dashed, very thick] (0.48,2.1)--(0.48,0);
+				
+				\draw[-, dashed, very thick] (0,1.3)--(0.74,1.3);
+				
+				\draw[-, dashed, very thick] (0.74,1.3)--(0.74,0);
+				
+				\node[] at (0.48,0) {\((\)};
+				
+				\node[] at (0.74,0) {\()\)};
+				
+				\node[right] at (1.5,2) {\(y=\displaystyle\frac{1}{x}\)};
+			\end{tikzpicture}
+			\caption{Plot of \(y=\displaystyle\frac{1}{x}\).}
+		\end{figure}
+		It is clear that every open interval \(\mc{U}=(a,b)\) in \(\R\) has \(f^{-1}(\mc{U})\), an open interval in \(\mc{X}\). Thus, \(f\) is continuous on \(\mc{X}\implies f\) is continuous at every point in \(\mc{X}\).
+		
+		\item (Dirichlet's function) On \(\mc{X}=\R\),
+		\begin{equation*}
+			f(x)=\begin{cases}
+					1&\text{if}~x\in\Q\\
+					0&\text{if}~x\notin\mc{Q}
+				 \end{cases}.
+		\end{equation*}
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=1.5]
+				\draw[Latex-Latex, thick] (0,-0.6)--(0,3);
+				
+				\node[left] at (0,3) {\(y\)};
+				
+				\node[below] at (3,0.95) {\(x\)};
+				
+				\draw[Latex-Latex, thick] (-1,0.95)--(3,0.95);
+				
+				\draw[orange] (-0.2,2) [curve through = {(0,2.1)}] to (0.2,2);
+				
+				\node[left] at (-0.2,2) {\(\color{red} 3/2\)};
+				
+				\draw[orange] (-0.2,1.4) [curve through = {(0,1.3)}] to (0.2,1.4);
+				
+				\node[left] at (-0.2,1.4) {\(\color{red} 1/2\)};
+				
+				\draw[-, very thick, orange] (0,1.3)--(0,2.1);
+				
+				\draw[orange] (-0.2,1.2) [curve through = {(0,1.3)}] to (0.2,1.2);
+				
+				\node[right] at (0.2,1.2) {\(\color{red} 1/2\)};
+				
+				\draw[orange] (-0.2,0.7) [curve through = {(0,0.6)}] to (0.2,0.7);
+				
+				\node[right] at (0.2,0.6) {\(\color{red} -1/2\)};
+				
+				\draw[-, very thick, orange] (0,0.6)--(0,1.3);
+				
+				\draw[dashed, thick] (-1,1.75)--(3,1.75);
+				
+				\node[above] at (3,1.75) {\(1\)};
+				
+				\draw[dashed, thick] (-1,0.99)--(3,0.99);
+				
+				\node[above] at (3,0.99) {\(0\)};
+			\end{tikzpicture}
+			\caption{Plot of Dirichlet's function.}
+		\end{figure}
+			This is \emph{not} ``continuous on \(\mc{X}\)", because intervals \(\displaystyle\left(\frac{1}{2},\frac{3}{2}\right)\), having \(f^{-1}\left(\left(\displaystyle\frac{1}{2},\frac{3}{2}\right)\right)=\Q\), and \(\displaystyle\left(-\frac{1}{2},\frac{1}{2}\right)\), having \(f^{-1}\left(\displaystyle\left(-\frac{1}{2},\frac{1}{2}\right)\right)=\R\backslash\Q\), both have pre-images that are \emph{not open}. 
+			
+			\smallskip
+			
+			We can a bit better here and say that \(f\) fails to be continuous at every point in \(\mc{X}\). We will illustrate this with discontinuity at \(0\): \(f(0)=1\) because \(0\in\Q\), and sequence 
+			\begin{equation*}
+				x_n=\begin{cases}
+						\frac{1}{n}&\text{if}~n\equiv 1\mod 2\\
+						
+						\frac{\sqrt{2}}{n}&\text{if}~n\equiv 0\mod 2
+				    \end{cases}
+			\end{equation*}
+			has \(x_n\to 0\), but 
+			\begin{equation*}
+				f(x_n)=\begin{cases}
+						1&\text{if}~n\equiv 1\mod 2\\
+						0&\text{if}~n\equiv 0\mod 2
+					   \end{cases}
+			\end{equation*}
+			fails to obey ``\(\displaystyle\lim_{n\to\infty}f(x_n)=f(0)\)", as required.
+			
+			\item Use \(f(x)\) above to build \(g(x)=xf(x)\).
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\draw[Latex-Latex, thick] (-3,0)--(3,0);
+					
+					\node[left] at (0,3) {\(y\)};
+					
+					\draw[Latex-Latex, thick] (0,-3)--(0,3);
+					
+					\node[below] at (3,0) {\(x\)};
+					
+					\draw[dashed, thick, blue] (-3,0.1)--(3,0.1);
+					
+					\node[above] at (3,0.1) {\(g(x)=0,~x\notin\Q\)};
+					
+					\draw[-, dashed, thick, blue, smooth, samples = 100, domain=-2.6:2.6, variable = \x] plot(\x, {\x});
+					
+					\node[right, above] at (2.6,2.6) {\(g(x)=x,~x\in\Q\)};
+				\end{tikzpicture}
+				\caption{Plot of \(g(x)=xf(x)=x(\text{Dirichlet's function})\).}
+			\end{figure}
+			This \(g\) is continuous at \(0\), but discontinuous at every other point. How do we show this? Well, this is equivalent to saying discontinuous at \(x\neq 0\), so find sequences \(q_n\in\Q\) and \(z_n\notin\Q\) with \(q_n\to x\) and \(z_n\to x\); for one of these sequences, the values of \(f(q_n)\) and \(f(z_n)\) will have a limit different from \(f(x)\).
+			
+			\medskip
+			
+			When \(x=0\), let \(\eps>0\) be given. Pick \(\delta=\eps\); every \(x\in\B[0;\delta)\) has 
+			\begin{equation*}
+				\left|g(x)-g(0)\right|=|g(x)|\leq |x|<\delta=\eps.
+			\end{equation*}
+	\end{enumerate}
+\end{example}
+
+\subsection{Uniform continuity}
+This only makes sense in metric spaces.
+
+\begin{ndef}{: Uniform continuity}
+	A function \(f:\mc{X}\to\mc{Y}\) is \emph{uniformly continuous on \(\mc{X}\)} (\(\mc{X},\mc{Y}\) metric spaces) exactly when:
+	\begin{equation*}
+		\emph{For all}~\eps>0,~\text{there exist}~\delta>0~\text{such that, for all}~s\in\mc{X},~t\in\B_{\mc{X}}[s;\delta),~f(t)\in\B_{\mc{Y}}[f(s);\eps).
+	\end{equation*}
+\end{ndef}
+\begin{note}
+	The main point here is that the same \(\delta\) covers all \(s\in\mc{X}\).
+\end{note}
+Contrasting this with ``\(f\) is continuous on \(X\)", which means 
+\begin{equation*}
+	\text{For all}~s\in\mc{X},~\eps>0,~\text{there exists}~\delta>0~\text{such that, for all}~t\in\B_{\mc{X}}[s;\delta),~f(t)\in\B_{\mc{Y}}[f(s);\eps),
+\end{equation*}
+we see that in non-uniform continuity, we allow \(\delta=\delta(\eps,s)\) to depend on base point \(s\); this changes the meaning, and makes uniform continuity visibly better.
+\begin{example}
+	In \(\mc{X}=(0,\infty)\), \(f(x)=\displaystyle\frac{1}{x}\) is continuous on \(\mc{X}\), but \emph{not} uniformly continuous on \(\mc{X}\).
+	\begin{proof}
+		We start by noting that
+		\begin{equation*}
+			\left|f(s)-f(t)\right|=\left|\frac{1}{s}-\frac{1}{t}\right|=\frac{|s-t|}{st}.
+		\end{equation*}
+		For fixed \(s>0\), every \(t\in\left(\displaystyle\frac{s}{2},\frac{3s}{2}\right)\) will obey \(\displaystyle\frac{1}{t}<\frac{2}{s}\). Hence, 
+		\begin{equation*}
+			|f(s)-f(t)|=\frac{|s-t|}{st}<\left(\frac{2}{s^2}\right)|s-t|;
+		\end{equation*}
+		to get \(\text{RHS}<\eps\) when \(|s-t|<\delta\), we should choose \(\delta=\displaystyle\left(\frac{s^2}{2}\right)\eps\). However, to defend the assumption \(t>\displaystyle\frac{\eps}{2}\), we have to make sure \(\delta<\displaystyle\frac{s}{2}\), so we choose \(\delta=\text{min}\left\{\displaystyle\frac{s}{2},\left(\displaystyle\frac{s^2}{2}\right)\eps\right\}\). This concludes the proof, since 
+		\begin{equation*}
+			t\in(s-\delta,s+\delta)\implies |f(s)-f(t)|<\eps.
+		\end{equation*}
+	\end{proof}
+	\begin{note}
+		Notice that \(\delta\) depends on \(s\); smaller \(s\) demands a smaller \(\delta\). This dependence  is not ``uniform", however, this is not yet a proof that this function is not uniformly continuous, because we have not yet falsified the definition yet, but merely shown that our methods are too weak to confirm that the function is uniformly continuous.
+	\end{note}
+	\begin{proof}
+		To prove that uniform continuity fails, we look back at the definition and negate that:
+		\begin{equation*}
+			\text{There exists}~\eps>0,~\text{such that for all}~\delta>0,~\text{there exists}~s\in\mc{X},~t\in\B[s;\delta),~\text{with}~|f(t)-f(s)|\geq\eps.
+		\end{equation*}
+		This holds for \(\eps=1\). Given any \(\delta>0\), pick any \(s\in\left(0,\text{min}\{\delta,1\}\right)\), and any \(t\in\left(0,\displaystyle\frac{s}{2}\right)\): \(0<s-t<s<\delta\) and
+		\begin{equation*}
+			f(t)-f(s)=\frac{1}{t}-\frac{1}{s}>\frac{2}{s}-\frac{1}{s}=\frac{1}{s}>1=\eps.
+		\end{equation*}
+	\end{proof}
+\end{example}
+Where exactly to get uniform continuity then?
+\begin{idea}
+	Pointwise continuity at points \(x_1,x_2,\dots,x_N\in\mc{X}\) give \(N\) choices for \(\delta_1,\delta_2,\dots,\delta_N\) for any \(\eps>0\). Using \(\delta=\text{min}\{\delta_1,\dots,\delta_N\}\) gives something like uniform continuity.
+\end{idea}
+\begin{ntheorem}{}
+	If \(f:\mc{X}\to\mc{Y}\) is continuous, and \(\mc{X}\) is compact, then \(f\) is uniformly continuous on \(\mc{X}\).
+\end{ntheorem}

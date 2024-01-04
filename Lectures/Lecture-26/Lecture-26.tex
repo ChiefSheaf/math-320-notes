@@ -1,0 +1,95 @@
+\subsection*{Failure modes}
+A set \(\mc{K}\) is compact iff every open cover has a finite subcover. Thus, a set \(\mc{S}\) fails to be compact iff some \emph{open} cover has \emph{no} finite subcover.
+
+\begin{nlemma}{}
+	In \((\R,|\cdot|)\), the set \(\Z\) is not compact.
+\end{nlemma}
+\begin{proof}
+	Let \(\ms{G}=\{(n-1,n+1):n\in\Z\}\). Clearly, each element \(\ms{G}\) is an open set, and \(\Z\subseteq\displaystyle\bigcup\ms{G}\). However, any finite subset \(\mc{G}_1,\dots,\mc{G}_N\) of \(\ms{G}\) will cover only finite subsets of \(\Z\), so \(\Z\subseteq\mc{G}_1\cup \mc{G}_2\cup \dots\cup \mc{G}_N\).
+	
+	\medskip
+	
+	Another open cover could be \(\mc{G}=\{(-n,n):n\in\N\}\).
+\end{proof}
+
+\begin{ndef}{: Bounded}
+	In a  metric space \((\mc{X},d)\), we say that a set \(\mc{A}\subseteq\mc{X}\) is \emph{\textbf{bounded}} exactly when there exists \(x\in\mc{X}\) and \(R>0\) such that \(A\subseteq\B[x;R)\).
+\end{ndef}
+\begin{nproposition}{}
+	In any metric space \((\mc{X},d)\), every compact set is bounded.
+\end{nproposition}
+\begin{proof}
+	Let \(\mc{K}\subseteq\mc{X}\) be compact. Pick any \(x\in\mc{X}\) and let \(\ms{G}=\{\B[x;n)\st n\in\N\}\). Then, \(\displaystyle\bigcup\ms{G}\supseteq\mc{X}\supseteq\mc{K}\), so \(\ms{G}\) is an open cover for \(\mc{K}\). Hence, it must have a finite subcover \(\mc{G}_1,\mc{G}_2,\dots,\mc{G}_N\) with each \(\mc{G}_k=\B[x;n_k)\). Let \(R=\text{max}\{n_1,n_2,\dots,n_N\}\) to get \(\B[x;R)=\mc{G}_1\cup\mc{G}_2\cup\dots\cup \mc{G}_N\supseteq\mc{K}\).
+\end{proof}
+
+\begin{nlemma}{}
+	In \(\R\), let \(\mc{S}=\displaystyle\left\{\displaystyle\frac{1}{n}\st n\in\N\right\}\).
+	\begin{enumerate}[(a)]
+		\item Set \(\mc{S}\) is \emph{not} compact.
+		
+		\item Set \(\ol{\mc{S}}=\mc{S}\cup\{0\}\) is compact.  
+	\end{enumerate}
+\end{nlemma}
+
+\begin{enumerate}[(a)]
+	\item 
+	\begin{proof}
+		For each \(n\), note that \(\displaystyle\frac{1}{n}-\frac{1}{n+1}=\frac{1}{n(n+1)}>\frac{1}{(n+1)^2}\).
+		
+		\smallskip
+		
+		Let \(\mc{G}_n=\B\left[\displaystyle\frac{1}{n};\frac{1}{(n+1)^2}\right)\) to get an open interval with \(\mc{G}_n\cap\mc{S}=\left\{\displaystyle\frac{1}{n}\right\}\). Use \(\ms{G}=\{\mc{G}_n\st n\in\N\}\) as an open cover for \(\mc{S}\). No finite subcover can include all points of \(\mc{S}\) since each \(\mc{G}_k\) only holds one point of \(\mc{S}\).
+	\end{proof}
+	
+	\item 
+	\begin{proof}
+		Let \(\ms{G}\) be any open cover for \(\ol{S}\). Thus, there must be some open \(\mc{G}_0\in\ms{G}\) with \(0\in\mc{G}_0\). Being open, \(\mc{G}_0\) must contain \(\B[0;\eps)\) for some \(\eps>0\). Pick any integer \(N>\displaystyle\frac{1}{\eps}\). Then, \(\displaystyle\frac{1}{n}<\eps\) for all \(n>N\), so all these points lie in \(\mc{G}_0\). For indices \(1,2,\dots,N\), pick \(\mc{G}_k\in\ms{G}\) such that \(\displaystyle\frac{1}{k}\in\mc{G}_k\). Hence, we conclude that 
+		\begin{align*}
+			\ol{S}=&\left\{1,\frac{1}{2},\frac{1}{3},\dots,\frac{1}{N}\right\}\cup\left\{\frac{1}{N+1},\frac{1}{N+2},\dots\right\}\\
+			\subseteq&(\mc{G}_1\cup\mc{G}_2\cup\dots\cup\mc{G}_N)\cup\mc{G}_0,
+		\end{align*}
+		which is a finite subcover.
+	\end{proof}
+\end{enumerate}
+
+\begin{nproposition}{}
+	In any HTS \((\mc{X},\ms{T})\), every compact set is closed.
+\end{nproposition}
+\begin{proof}
+	Let \(\mc{K}\subseteq\mc{X}\) be compact. We will show that \(\mc{K}^c\) is open. Pick any \(z\in\mc{K}^c\). Now, for each \(x\in\mc{K}\), HTS 4 implies that there exists \(\mc{U}_x,\mc{V}_x\in\ms{T}\) with \(x
+	\in\mc{U}_x\), \(z\in\mc{V}_x\) such that \(\mc{U}_x\cap\mc{V}_x=\emptyset\).
+	
+	\smallskip
+	
+	Now, let \(\ms{G}=\{\mc{U}_x:x\in\mc{K}\}\) is clearly an open cover for \(\mc{K}\), so by compactness, it must have a finite subcover:
+	\begin{equation*}
+		\mc{K}\subseteq\mc{U}_{x_1}\cup\mc{U}_{x_2}\cup\dots\cup\mc{U}_{x_N}
+	\end{equation*}
+	for some points \(x_1,\dots,x_N\in\mc{K}\). Thus, 
+	\begin{align*}
+		\mc{K}^c\supseteq& \mc{U}_{x_1}^c\cap\mc{U}_{x_2}^c\cap\dots\cap\mc{U}_{x_N}^c\\
+		\supseteq&\mc{V}_{x_1}\cap\mc{V}_{x_2}\cap\dots\cap\mc{V}_{x_N}\supseteq\{z\}.
+	\end{align*} 
+	Therefore, since \(\mc{V}_{x_1}\cap\mc{V}_{x_2}\cap\dots\cap\mc{V}_{x_N}\) is open (HTS 3), we conclude that \(z\in(\mc{K}^c)^{\circ}\).
+\end{proof}
+
+\subsubsection{Ultimate end-goal:}
+In a metric space \((\mc{X},d)\)
+\begin{equation*}
+	[\mc{K}~\text{is compact}]\iff [\mc{K}~\text{is closed}]~\text{and}~[\mc{K}~\text{is bounded}]~\text{and}~[??]~(\text{where this depends on what \((\mc{X},d)\) we study.})
+\end{equation*}
+\begin{note}
+	In \(\ell^2\), \(\mc{S}=\{\hat{e}_p=\underbrace{(0,0,\dots,1,0,\dots,0)}_{1~\text{at}~p^{\text{th}}~\text{position}}:p\in\N\}\) is closed and bounded and \emph{\textbf{not compact}}; we need more conditions for compactness.
+\end{note}
+
+\begin{nproposition}{}
+	In a HTS \((\mc{X},\ms{T})\), if \(\mc{K}\) is compact, every closed subset of \(\mc{K}\) is compact.
+\end{nproposition}
+\begin{proof}
+	Proof in canvas notes.
+\end{proof}
+\begin{comment}
+	\begin{proof}
+		Let \(\mc{F}\) be closed, with \(\mc{F}\subseteq\mc{K}\). Let \(\ms{G}\) be an open cover of \(\mc{F}\); say \(\ms{G}=\{\mc{G}_{\alpha}:\alpha\in\mc{A}\}\) for some index set \(\mc{A}\). Then, \(\mc{F}\subseteq\displaystyle\bigcup_{\alpha\in\mc{A}}\mc{G}_{\alpha}\), so \(\mc{K}\subseteq\mc{F}^c\cup\displaystyle\bigcup_{\alpha\in\mc{A}}\mc{G}_{\alpha}\) and \(\ms{G}=\{\mc{F}^c\}\) will be an open cover for \(\mc{K}\); it must have a finite subcover (for \(\mc{K}\)). Let \(\mc{V}_1,\dots,\mc{V}_N\in\ms{G}\cup\{\mc{F}^c\}\) such that  
+	\end{proof}
+\end{comment}

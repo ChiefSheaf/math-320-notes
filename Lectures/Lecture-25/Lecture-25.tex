@@ -1,0 +1,72 @@
+\subsection{Limit points}
+\begin{ndef}{: Limit points}
+	Given a HTS \((\mc{X},\ms{T})\) with set \(\mc{A}\subseteq\mc{X}\), a point \(z\in\mc{X}\) is a \emph{\textbf{limit point}} for \(\mc{A}\) iff
+	\begin{equation*}
+		\text{for all}~\mc{U}\in\ms{N}(z),\left(\mc{U}\backslash\{z\}\right)\cap\mc{A}\neq\emptyset.
+	\end{equation*}
+	The set of all such \(z\) is denoted by \(\mc{A}'\).
+\end{ndef}
+\begin{notation}
+	Some synonyms for ``limit point" are: cluster point, accumulation point, etc.
+\end{notation}
+\begin{nlemma}{}
+	In a metric space \((\mc{X},d)\) with \(\mc{A}\subseteq\mc{X}\), the following are equivalent:
+	\begin{enumerate}[(a)]
+		\item \(x\in\mc{A}'\).
+		
+		\item \(x=\displaystyle\lim_{n\to\infty}x_n\) for some sequence \((x_n)\) of \emph{distinct points} all in \(\mc{A}\).
+	\end{enumerate}
+\end{nlemma}
+\begin{proof}
+	\((a\Rightarrow b)\): We build a sequence like in (b): pick \(x_1\in\B(x;1)\cap\mc{A}\). Pick \(x_2\in\B\left(x;\operatorname{min}\left\{\displaystyle\frac{1}{2},d(x_1,x)\right\}\right)\cap \mc{A}\) and then \(x_3\in\B\left(x;\operatorname{min}\left\{\displaystyle\frac{1}{3},d(x_2,x)\right\}\right)\cap\mc{A}\), and continue like this, so we get a sequence \((x_n)\) such that all distinct \(x_n\in\mc{A}\) for all \(n\), and \(d(x,x_n)<\displaystyle\frac{1}{n}\implies x_n\to x\).
+	\begin{note}
+		Imagine \(\mc{A}=(0,1]\) and we want to show \(0\in\mc{A}'\); choosing \(x_n=\displaystyle\frac{1}{2}+\frac{1}{2n}\) gives a decreasing \(x_n\), but \(x_n\to\displaystyle\frac{1}{2}\), not \(0\).
+	\end{note}
+	
+	\medskip
+	
+	\((b\Rightarrow a)\) We assume (b), and let \(\mc{U}\in\ms{N}(x)\). By definition of \(\ms{N}(x)\), there exists \(\eps>0\) such that \(\B[x;\eps)\subseteq\mc{U}\). Use the fact that \(``x_n\to x"\) to get \(N\in\N\) such that for all \(n>N\) we have \(\underbrace{d(x_n,x)<\eps}_{x_n\in\B[x;\eps)\subseteq\mc{U}}\). So we get many of these (all different, since \(x_n\not\to x\) for all \((x_n)\)) \(x_n\in(\mc{U}\backslash\{x\})\cap\mc{A}\neq\emptyset\), as required.
+\end{proof}
+The following are some facts, the proofs for which are in the canvas notes:
+\begin{enumerate}[(i)]
+	\item If \(\mc{A}\subseteq\mc{B}\), then \(\mc{A}'\subseteq\mc{B}'\).
+	
+	\item \(z\notin\mc{A}'\iff\) there exists \(\mc{U}\in\ms{N}(x)\) such that \((\mc{U}\backslash\{z\})\cap\mc{A}=\emptyset\).
+	
+	\item \(\mc{G}\subseteq\mc{X}\) is open\(\iff(\mc{G}^c)'\subseteq\mc{G}^c\).
+	
+	\item \(\mc{F}\subseteq\mc{X}\) is closed\(\iff\mc{F}'\subseteq\mc{F}\).
+	
+	\item For any \(\mc{A}\subseteq\mc{X}\), set \(\mc{A}'\) is closed.
+	
+	\item For any \(\mc{A}\subseteq\mc{X}\), \(\ol{\mc{A}}=\mc{A}\cup\mc{A}'\).
+\end{enumerate}
+\begin{ndef}{: Isolated point}
+	For \(\mc{A}\subseteq\mc{X}\) in a HTS, the points of \(\mc{A}\backslash\mc{A}'\) are called \emph{\textbf{isolated}}.
+\end{ndef}
+\begin{example}
+	In \(\R\), \((0,1)'=[0,1]\), \((\Q\cap(0,1))'=[0,1]\), and \(\mc{A}=[\Q\cap(-\infty,0)]\cup\Z\) such that \(\mc{A}'=(-\infty,0]\) and the isolated points are \(\mc{A}\backslash\mc{A}'=\N\).
+\end{example}
+
+\subsection{Subspaces}
+For any metric space \((\mc{X},d)\), the same \(d\) works as a metric in any subset \(\mc{Y}\subseteq\mc{X}\). So \((\mc{Y},d)\) is a metric space too. Topology in \(\mc{Y}\) will have sets ``open in \(\mc{Y}\)" that are subsets of \(\mc{X}\) but may \emph{fail} to be ``open in \(\mc{X}\)".
+
+\clearpage
+
+\section{Compactness, Convergence, and Completeness}
+\subsection{Compactness}
+\begin{ndef}{: Compact}
+	Given a HTS \((\mc{X},\ms{T})\), let \(\mc{K}\subseteq\mc{X}\). We say that \(\mc{K}\) is \emph{\textbf{compact}} means for \emph{every} collection \(\ms{G}\) of open sets with \(\mc{K}\subseteq\displaystyle\bigcup\ms{G}\) there exists \(N\in\N\) and \(\mc{G}_1,\dots,\mc{G}_N\in\ms{G}\) satisfying 
+	\begin{equation*}
+		\mc{K}\subseteq\mc{G}_1\cup\mc{G}_2\cup\dots\cup\mc{G}_N.
+	\end{equation*}
+\end{ndef}
+\begin{note}
+	Every open cover for \(\mc{K}\) has a finite subcover.
+\end{note}
+\begin{corollary}
+	Any finite set is compact. 
+\end{corollary}
+\begin{proof}
+	Let \(S=\{x_1,\dots,x_N\}\) be a finite set. Given any \(\ms{G}\subseteq\ms{T}\) with \(\mc{S}\subseteq\bigcup\ms{G}\); for each \(k=,\dots,N\), pick some \(\mc{G}_k\in\ms{G}\). Then, \(\mc{G}_1,\mc{G}_2,\dots,\mc{G}_N\) obeys \(\mc{S}\subseteq\mc{G}_1\cup\mc{G}_2\cup\dots\cup\mc{G}_N\).
+\end{proof}

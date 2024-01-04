@@ -1,0 +1,106 @@
+\begin{nproposition}{}
+	We call \((\mc{R},+)\) is an Abelian group, i.e., for all \(x,y,z\in\operatorname{CS}(\Q)\), we have
+	\begin{enumerate}[(A)]
+		\item \(R[x]+R[y]\) is a well-defined element of \(\mc{R}\).
+		
+		\item \(R[x]+R[y]=R[y]+R[x]\).
+		
+		\item \((R[x]+R[y])+R[z]=R[x]+(R[y]+R[z])\).
+		
+		\item \(R[x]+\Phi(0)=R[x]\).
+		
+		\item \(\mc{R}\) contains another element \(``-R[x]"\), satisfying \(R[x]+(-R[x])=\Phi(0)\).
+	\end{enumerate}
+\end{nproposition}
+\begin{proof}
+	The proof for (A) to (D) follows pretty much directly from definitions, and some of them are already proved before.
+	
+	\medskip
+	
+	For part (E): Given \(x=(x_1,x_2,x_3,\dots)\), define \(-x=(-x_1,-x_2,-x_3,\dots)\in\operatorname{CS}(\Q)\), and note
+	\begin{equation*}
+		R[x]+R[-x]=R[x+(-x)]=R[(0,0,0,\dots)]=\Phi(0).
+	\end{equation*}
+\end{proof}
+
+\subsection{Multiplication}
+We now extend \(``\cdot"\) to \(\mc{R}\) by lifting \(``\cdot"\) defined in \(\operatorname{CS}(\Q)\). Define 
+\begin{align*}
+	R[x]\cdot R[y]&:=R[x\cdot y]\\
+				  &:=R[(x_1y_1,x_2y_2,x_3y_3,\dots)].
+\end{align*}
+We have shown before in Homework 4 problem 6(b) that \(x\cdot y\in\operatorname{CS}(\Q)\).
+\begin{nproposition}{}
+	This \(``\cdot"\) is well-defined, i.e., if \(x,x',y,y'\in\operatorname{CS}(\Q)\) with \(R[x]=R[x']\) and \(R[y]=R[y']\) then \(R[x]\cdot R[y]=R[x']\cdot R[y']\).
+\end{nproposition}
+\begin{proof}
+	Given \(x,x',y,y'\), as in the setup, \(x'\in R[x]\) and \(y'\in R[y]\), i.e., \(x_n'-x_n\to 0\) and \(y_n'-y_n\to 0\). Now, we rearrange 
+	\begin{align*}
+		x_n'y_n'-x_ny_n=&[(x_n'-x_n)+x_n]y_n'-x_ny_n\\
+					   =&(x_n'-x_n)y_n'+x_n(y_n'-y_n).
+	\end{align*}
+	\begin{note}
+		Another trick like this can be found in the proof for Theorem 3.3 part (c) in Rudin.
+	\end{note}
+	Now, since every Cauchy sequence is bounded, there exists \(M_0,M_1\) such that 
+	\begin{equation*}
+		|x_n'y_n'-x_ny_n|\leq M_0|x_n'-x_n|+M_1|y_n'-y_n|;
+	\end{equation*}
+	by squeeze theorem, \(\text{LHS}\to 0\), i.e., \(x'\cdot y'\in R[x\cdot y]\). However, \(x'\cdot y'\in R[x'\cdot y']\). A non-empty intersection implying inequality is something that we prove on Homework 5 problem 3.
+\end{proof}
+\begin{nproposition}{}
+	We call \((\mc{R}^*,\cdot)\) is an Abelian group (where \(\mc{R}^*=\mc{R}\backslash\{\Phi(0)\}\)), i.e., for all \(x,y,z\in \operatorname{CS}(\Q)\), we have
+	\begin{enumerate}[(A)]
+		\item \(R[x]\cdot R[y]\) is a well-defined element of \(\mc{R}\).
+		
+		\item \(R[x]\cdot R[y]=R[y]\cdot R[x]\).
+		
+		\item \((R[x]\cdot R[y])\cdot R[z]=R[x]\cdot(R[y]\cdot R[z])\).
+		
+		\item \(R[x]\cdot \Phi(1)=R[x]\).
+		
+		\item \(\mc{R}\) contains another element \(``\displaystyle\frac{1}{R[x]}"\), satisfying \(R[x]\cdot \left(\displaystyle\frac{1}{R[x]}\right)=\Phi(1)\).
+	\end{enumerate}
+\end{nproposition}
+\begin{proof}
+	Similar to the Abelian group under addition, the proof for parts (A) to (D) follow from the definition or have already been shown before. The proof for part (E) is Homework 5 problem 6.
+\end{proof}
+
+\subsection{Distribution}
+\begin{nproposition}{}
+	GIven any \(a,b,c\in\operatorname{CS}(\Q)\), we have 
+	\begin{equation*}
+		R[a]\cdot(R[b]+R[c])=(R[a]\cdot R[b])+(R[a]\cdot R[c]).
+	\end{equation*}
+\end{nproposition}
+\begin{proof}
+	Using the definitions, we get 
+	\begin{align*}
+		\text{LHS}=&R[a]\cdot R[b+c]=R[a\cdot (b+c)]\\
+		\text{RHS}=&(R[a\cdot b])+(R[a\cdot c])=R[a\cdot b+a\cdot c].
+	\end{align*}
+	Inside the Cauchy sequences, we have the \(n^{\text{th}}\) terms 
+	\begin{equation*}
+		\begin{rcases*}
+			[a\cdot (b+c)]_n=a_n(b_n+c_n)\\
+			[a\cdot b+a\cdot c]_n=a_nb_n+a_nc_n
+		\end{rcases*}~\text{same for each \(n\in\N\)}.
+	\end{equation*}
+	So indeed both LHS and RHS share this representative sequence, i.e., they must be equal.
+\end{proof}
+
+\subsection{Ordering}
+\begin{ndef}{}
+	Given \(x,y\in\operatorname{CS}(\Q)\) define \(R[x]<R[y]\) when there exists \(r>0\) (where \(r\in\Q\)), there exists \(n\in\N\) such that \(x_n+r<y_n\), for all \(n\geq N\).
+\end{ndef}
+\begin{nproposition}{}
+	This definition for \(``<"\) is unambiguous, i.e., independent of representatives selected from \(R[x], R[y]\). Thus, 
+	\begin{enumerate}[(a)]
+		\item Every \(x\in\operatorname{CS}(\Q)\) obeys exactly one of \(R[x]<\Phi(0)\), or \(R[x]=\Phi(0)\), or \(R[x]>\Phi(0)\).
+		
+		\item \(R[x]<R[y]\) and \(R[y]<R[z]\) implies \(R[x]<R[z]\).
+	\end{enumerate}
+\end{nproposition}
+\begin{proof}
+	The proof for this is Homework 5 problem 5.
+\end{proof}

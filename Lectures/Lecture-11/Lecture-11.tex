@@ -1,0 +1,71 @@
+\clearpage
+\begin{nquote}{: Dr. Zahl special}
+	``I won't intentionally say something wrong, but I might; I hit a car on my way to work today so I'm a bit rattled. Also, check your brakes before you, you know, brake." - Dr. Joshua Zahl, 09/29/2023.
+\end{nquote}
+
+\section{Sub-sequences}
+Recall that sequences (of real numbers) are a function \(f:\N\to\R\); a more practical way to of defining the notation for sequences is \(x_n\) for \(x\in\N\). This is because we are effectively ``enumerating" the sequence, clarifying that it maps from the natural numbers. 
+\begin{ndef}{: Sub-sequences}
+	If \(x:\N\to\R\) is a sequence, then a \emph{\textbf{sub-sequence}} of the \(x\) is a sequence of the form \(x\circ g:\N\to\R\), where \(g:\N\to\N\) is \emph{strictly increasing}.
+\end{ndef}
+\begin{notation}
+	This notation is clunky to work with, and the notation used in practice is \(x_{n_1},x_{n_2},x_{n_3},\dots,x_{n_k}\) such that \(n_1<n_2<n_3<\dots\)
+\end{notation}
+
+\clearpage
+
+\section{Completeness (Dr. Zahl)}
+\begin{nproperty}{ (a): Metric completeness}
+	Every \emph{Cauchy sequence} of real numbers \emph{converges}.
+\end{nproperty}
+\begin{note}
+	Once we define a metric it becomes more apparent why this is useful; currently, both convergent and Cauchy are the same, but when we depart from the real numbers this fact is less obvious and needs some more work.
+\end{note}
+\begin{nproperty}{ (b): Order completeness (Least upper bound property)}
+	Consider \(\mc{S}\subseteq\R\) (\(\mc{S}\neq\emptyset\)); we define \(\mc{B}=\{b\in\R\st\text{for all}~s\in\mc{S},~s\leq b\}\). Either \(\mc{B}=\emptyset\) or \(\mc{B}=[\beta,\infty)\) for some \(\beta\in\R\).
+\end{nproperty}
+
+\textbf{Note}:
+
+\begin{enumerate}[(a)]
+	\item Every bounded sets have infinitely many upper bounds, however the least upper bound (supremum) tells us something about the structure of the set.
+	
+	\item The supremum is not necessarily in the set which it bounds.
+	
+	\item If we were to write the order completeness property for the rational numbers, this would not work. This is apparent if we define as \(\mc{S}\) for the rationals, we will see that we get a contradiction because there will always be a rational number smaller than \(\beta\) which will be an upper bound for \(\mc{S}\), causing the supremum to never exist.
+\end{enumerate}
+
+\begin{nproperty}{ (c): Monotone convergence property}
+	If \((x_n)\) is \emph{monotone increasing}, either \(x_n\to\infty\), or \((x_n)\) converges.
+\end{nproperty}
+\begin{ntheorem}{}
+	Properties (a), (b), (c) are equivalent
+\end{ntheorem}
+We have already shown that (a)\(\implies\)(b). We proceed by showing that (b)\(\implies\)(c):
+\begin{proof}
+	Let \((x_n)\) be a monotone increasing sequence. Let \(\mc{S}=\{x_n\st n\in\N\}\). If \(\mc{S}\) is \emph{not} bounded above, then \(x_n\to\infty\). Otherwise, the set of upper bounds \(\mc{B}\) is of the form \(\mc{B}=[\beta,\infty)\). Let us show that \(x_n\to\beta\).
+	
+	\medskip
+	
+	We know \(x_n\leq\beta\) for every \(n\). Let \(\eps>0\); there exists some \(x_N\in\mc{S}\) such that \(x_N>\beta-\eps\). Notice that this has to be true since if it wasn't, we would have \(x_n\leq \beta-\eps\), i.e., \(\beta-\eps\) is an upper bound for \(x_n\). However, since \(\beta\) is the supremum, and \(\beta-\eps<\beta\), this is clearly not true. Thus, for all \(n\geq N\), \(x_n\geq x_N>\beta-\eps\), i.e., \(|x_n-\beta|<\eps\).
+\end{proof}
+Now, we show that (c)\(\implies\)(a):
+\begin{proof}
+	The sketch for this proof is as follows:
+	
+	\medskip
+	
+	We begin by showing the following lemmas:
+	\begin{nlemma}{-1}
+		Every sequence of real numbers has a \emph{weakly} monotone sub-sequence.
+	\end{nlemma}
+	This is fairly intuitive; consider \(x_n=(-1)^n n\). This has uncountably many sub-sequences.
+	\begin{nlemma}{-2}
+		Every \emph{Cauchy sequence} is \emph{bounded}.
+	\end{nlemma}
+	The proof for this is basically pushing around definitions from before.
+	\begin{nlemma}{-3}
+		If \((x_n)\) is Cauchy and \((x_{n_k})\) is a sub-sequence and \(x_{n_k}\to\hat{x}\), then \(x_n\to\hat{x}\).
+	\end{nlemma}
+	To prove this we do require the fact that the sequence is Cauchy; every Cauchy sequence is bounded and from Lemma-1 we have a monotone increasing sub-sequence. We know this converges by the monotone convergence property, and thus, this forces the sequence itself to converge. So we combine all 3 lemmas to prove the claim.
+\end{proof}

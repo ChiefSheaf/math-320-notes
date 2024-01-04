@@ -1,0 +1,95 @@
+\begin{nquote}{}
+	"That's a little informal; I got tired of writing."- Philip Loewen, 09/13/2023
+	
+	\medskip
+	
+	"Do they still teach LISP?" - Philip Loewen, 09/13/2023
+\end{nquote}
+
+\begin{claim}
+	The union of countably many sets, each one countable is also countable.
+\end{claim}
+\begin{proof}
+	Let \(\mc{A}^{(1)},~\mc{A}^{(2)},~\mc{A}^{(3)},\dots\) be a (countable) family of sets, each countable. This means each \(k\) comes with some \(\varphi_k\st\N\to \mc{A}^{(k)}\), a bijection. So, define,
+	\begin{equation*}
+		f\st\N\times\N \to \bigcup_{k=1}^{\infty}\mc{A}^{(k)},
+	\end{equation*}
+	by \(f(m,n)=\varphi_m(n)\). This is \emph{surjective}, and input set \(\N\times\N\) is countable; we are done.
+\end{proof}
+
+\begin{claim}
+	The set \(\N\times\N\times\N\) is countable.
+\end{claim}
+\begin{proof}
+	By definition,
+	\begin{equation*}
+		\N\times\N\times\N=\{(x_1,~x_2,~x_3)\st x_k\in\N\}
+	\end{equation*}
+	is the image of 
+	\begin{equation*}
+		(\N\times\N)\times\N=\{((x_1,~x_2),~x_3)\st x_1,~x_2,~x_3\in\N\}
+	\end{equation*}
+	under \(\varphi((x_1,~x_2),~x_3)=(x_1,~x_2,~x_3)\). 
+	Clearly, \(\varphi\) is bijective and \((\N\times\N)\times\N\) is the cartesian product of two countable sets.
+	
+	\medskip
+	
+	Extend by induction:
+	
+	\smallskip
+	
+	For any \(n\in\N\), the n-fold product
+	\begin{equation*}
+		\prod_{k=1}^{n}\N=\underbrace{\N\times\N\times\N\times\dots\times\N}_{n-\text{copies}}
+	\end{equation*}
+	is countable. Thus,
+	\begin{equation*}
+		\bigcup_{n\in\N}\left(\prod_{k=1}^{n}\N\right)
+	\end{equation*}
+	is countable. These are all the finite-length tuples with entries from \(\N\).
+\end{proof}
+\begin{ndef}{: Uncountable}
+	A set \(\mc{Y}\) is \emph{\textbf{uncountable}} iff \(\mc{Y}\) is infinite and not countable, i.e., \(\mc{Y}\) is infinite and every function \(\varphi:\N\to \mc{Y}\) fails to be bijective.
+\end{ndef}
+\begin{note}
+	We have to be careful with this definition. This is how Rudin defines uncountability,where exclusively infinite sets to be countable. For intuition, uncountable sets are all sets that are not countable.
+\end{note}
+\begin{note}
+	To prove that a set is \(\mc{Y}\) is uncountable, we show that every \(\varphi:\N\to \mc{Y}\) that is injective cannot be surjective.
+\end{note}
+\begin{example}
+	Let \(\mc{I}\) be the set of sequences having the form
+	\begin{equation*}
+		x=0.d_1d_2d_3\dots,
+	\end{equation*}
+	where each \(d_k\in\{0,~1,~2,\dots,~9\}\) and for all \(n\in\N\) there exists \(m\geq n:~d_m\neq 9\) (digit strings that do not ``end" with an infinite list of 9's.) This \(\mc{I}\) is uncountable. To prove this, pick some \(\varphi:\N\to\mc{I}\) that is injective. We shall show that \(\varphi\) is not surjective (this was first done by Cantor.) We note the list of \(\pfi\) values:
+	\begin{align*}
+		\varphi(1)=&0.\boxed{d_1^{(1)}}d_2^{(1)}d_3^{(1)}d_4^{(1)}\dots\\
+		\varphi(2)=&0.d_1^{(2)}\boxed{d_2^{(2)}}d_3^{(2)}d_4^{(2)}\dots\\
+		\varphi(3)=&0.d_1^{(3)}d_2^{(3)}\boxed{d_3^{(3)}}d_4^{(3)}\dots\\
+		\vdots&~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\ddots\\
+	\end{align*}
+	Now, for each \(k\in\N\), invent 
+	\begin{equation*}
+		x_k=\begin{cases}
+			5&\text{if}~d_k^{(k)}=7\\
+			7&\text{else}.
+		\end{cases}
+	\end{equation*}
+	(Keep \(x_i=d_i^{(k)}\) where \(i\neq k\).)
+	
+	\medskip
+	
+	Consider \(x:=0.x_1x_2x_3\dots\). Now, \(x\notin\varphi(\N)\) because \(x\) differs in position \(k\) from the string \(\varphi(k)\) so \(\varphi\) is not surjective.\qed
+	\begin{note}
+		Technically, we do not need to require that \(\varphi\) is injective.
+	\end{note}
+	\begin{note}
+		Use \(\R\) as known for now; we will build axiomatic connections later.
+	\end{note}
+	In this case, each \(x=0.x_1x_2x_3\dots\) in \(\mc{I}\) defines the real number 
+	\begin{equation*}
+		\sum_{k=1}^{\infty}\frac{x_k}{10^k},
+	\end{equation*}
+	and the proof above shows \(\mc{I}=[0,1)\) is uncountable.
+\end{example}

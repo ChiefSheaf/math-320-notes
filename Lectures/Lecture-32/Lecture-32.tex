@@ -1,0 +1,142 @@
+\subsection{Continuity at a point}
+\begin{ndef}{: Continuous at a point}
+	Let \((\mc{X},\ms{T}_{\mc{X}})\), \((\mc{Y},\ms{T}_{\mc{Y}})\), \((\mc{Z},\ms{T}_{\mc{Z}})\) be given HTS's, with \(f:\mc{X}\to\mc{Y}\) and \(x\in\mc{X}\). To say ``\(f\) \emph{\textbf{is continuous at} \(x\)}" is to say that 
+	\begin{equation*}
+		\text{for all}~\mc{W}\in\ms{N}_{\mc{Y}}(f(x)),~\text{one has}~f^{-1}(\mc{W})\in\ms{N}_{\mc{X}}(x).
+	\end{equation*} 
+	Equivalently, for all \(\mc{W}\in\ms{T}_{\mc{Y}}\) with \(f(x)\in\mc{W}\), there exists \(\mc{U}\in\ms{T}_{\mc{X}}\) with \(x\in\mc{U}\) and \(f(\mc{U})\subseteq\mc{W}\).
+\end{ndef}
+\begin{nlemma}{}
+	For \(f:\mc{X}\to\mc{Y}\) as above, the following are equivalent:
+	\begin{enumerate}[(a)]
+		\item \(f\) is continuous (on \(\mc{X}\)), i.e., \(f^{-1}(\Omega)\) is open in \(\mc{X}\), for each \(\Omega\) open in \(\mc{Y}\).
+		
+		\item \(f\) is continuous at \(x\), for each \(x\in\mc{X}\).
+	\end{enumerate}
+\end{nlemma}
+\begin{proof}
+	(a\(\implies\)b) This is immediate.
+	
+	\medskip
+	
+	(b\(\implies\)a) Given any open \(\mc{W}\subseteq\mc{Y}\), define \(\mc{U}=f^{-1}(\mc{W})\). To show \(\mc{U}\) is open, pick any \(x\in\mc{U}\) and show \(x\in\mc{U}^{\circ}\). Consider \(y=f(x)\in\mc{W}\); by definition of ``continuous at \(x\)", \(\mc{U}\in\ms{N}(x)\), i.e., \(\mc{U}\) contains an open set \(\mc{V}\) with \(x\in\mc{V}\subseteq\mc{U}\). Thus, \(x\in\mc{U}^{\circ}\), as required.
+\end{proof}
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\draw[dotted, very thick, fill=white!60!lightgray] (0,0) ellipse (43pt and 55pt);
+		
+		\node[left] at (-1,1.5) {\(\mc{X}\)};
+		
+		\draw[dotted, very thick, fill=white!60!lightgray] (4,0) ellipse (54pt and 65pt);
+		
+		\node[right] at (5.6,1.5) {\(\mc{Y}\)};
+		
+		\draw[dotted, very thick, fill=lightgray!60!lightgray] (0,0) circle (20pt);
+		
+		\draw[dotted, very thick, fill=lightgray!60!lightgray] (4,0) circle (30pt);
+		
+		\draw[fill] (0,0) circle (1pt);
+		
+		\draw[fill] (4,0) circle (1pt);
+		
+		\node[below] at (0,0) {\(x\)};
+		
+		\node[below] at (4,0) {\(f(x)\)};
+		
+		\node[right] at (0.55,-0.55) {\(\mc{U}\)};
+		
+		\node[right] at (4.77,-0.77) {\(\mc{W}\)};
+		
+		\draw [-Stealth] (0,0) to [out=45,in=135] (4,0);
+		
+		\node[above] at (1.9,0.75) {\scalebox{1.5}{\(f\)}};
+	\end{tikzpicture}
+	\caption{Visualization of the proof.}
+\end{figure}
+\begin{notation}
+	Going forward, if it is not clarified what \(\mc{X}\), \(\mc{Y}\) or \(\mc{Z}\) are, they will always be HTS's.
+\end{notation}
+\begin{nproposition}{}
+	If \(f:\mc{X}\to\mc{Y}\) and \(g:\mc{Y}\to\mc{Z}\), and \(f\) is continuous at \(x_0\), \(g\) is continuous at \(y_0=f(x_0)\), then \(h=g\circ f\) is continuous at \(x_0\).
+\end{nproposition}
+\begin{proof}
+	Pick any open \(\mc{W}\subseteq\mc{Z}\) with \(h(x_0)\in\mc{W}\). Then
+	\begin{align*}
+		h^{-1}(\mc{W})=&\{x\in\mc{X}\st g\circ f(x)=h(x)\in\mc{W}\}\\
+		=&\{x\in\mc{X}\st f(x)\in g^{-1}(\mc{W})\}\quad (g^{-1}(W)~\text{is an open neighbourhood of \(y_0\) by continuity of \(g\)}.)\\
+		=&f^{-1}(g^{-1}(\mc{W}))\quad(\text{open neighbourhood of \(x_0\) by continuity of \(f\)}.)
+	\end{align*} 
+\end{proof}
+\begin{nproposition}{}
+	If \(f,g:\mc{X}\to\R\) both continuous at \(x_0\in\mc{X}\), then as are the new functions
+	\begin{itemize}
+		\item \((f+cg)(x)=f(x)+cg(x)~\text{for all}~x\in\mc{X},~\text{and any}~c\in\R.\)
+		
+		\item \((fg)(x)=f(x)g(x)\) for all \(x\in\mc{X}\).
+		
+		\item \(\displaystyle\left(\frac{f}{g}\right)(x)=\displaystyle\frac{f(x)}{g(x)}\) for all \(x\in\mc{X}\), provided \(g(x)\neq 0\).
+	\end{itemize}
+\end{nproposition}
+\begin{proof}
+	Left as an exercise.
+\end{proof}
+
+\subsection{The metric case}
+\begin{nproposition}{}
+	Let \((\mc{X},d_{\mc{X}})\), \((\mc{Y},d_{\mc{Y}})\) be metric spaces, \(x\in\mc{X}\) and \(f:\mc{X}\to\mc{Y}\). The following are equivalent:
+	\begin{enumerate}[(a)]
+		\item \(f\) is continuous at \(x\).
+		
+		\item For all \(\eps>0\), there exists \(\delta>0\) such hat for all \(x'\) with \(d(x,x')<\delta\), \(d_{\mc{Y}}(f(x),f(x'))<\eps\).
+		
+		\item For any sequence \((x_n)\) in \(\mc{X}\) with \(x_n\to x\in\mc{X}\), one has \(f(x_n)\to f(x)\in\mc{Y}\).
+	\end{enumerate}
+\end{nproposition}
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\draw[dotted, very thick, fill=white!60!lightgray] (0,0) circle (30pt);
+		
+		\draw[dotted, very thick, fill=white!60!lightgray] (4,0) circle (40pt);
+		
+		\draw[fill] (0,0) circle (1pt);
+		
+		\draw[fill] (4,0) circle (1pt);
+		
+		\node[below] at (0,0) {\(x\)};
+		
+		\node[below] at (4,0) {\scalebox{0.8}{\(f(x)\)}};
+		
+		\draw[-Stealth] (0,0) -- (0,1.065);
+		
+		\node[right] at (0,0.5325) {\(\delta\)};
+		
+		\draw[dotted, very thick] (4,0) circle (15pt);
+		
+		\draw[-Stealth] (4,0) -- (4,1.42);
+		
+		\node[right] at (4,0.91) {\(\eps\)};
+		
+		\draw[-Stealth, color=blue] (0,1.065) to [out=25,in=140] (4,0.5325);
+		
+		\draw[-Stealth, color=blue] (0.25,0) to [out=15,in=160] (3.75,0);
+		
+		\draw[-Stealth, color=blue] (0,-1.065) to [out=335,in=220] (4,-0.5325);
+	\end{tikzpicture}
+	\caption{Visual representation showing that anything within \(\delta\) of \(x\) gets mapped to an open neighbourhood around \(f(x)\).}
+\end{figure}
+\begin{proof}
+	(a\(\implies\)b) Assume (a); pick an arbitrary \(\eps>0\). Let \(\mc{V}=\B_{\mc{Y}}[f(x);\eps)\); this is open, so \(f^{-1}(\mc{V})\in\ms{N}_{\mc{X}}(x)\), i.e., for some radius \(\delta>0\), we have \(\B_{\mc{X}}[x;\delta)\subseteq f^{-1}(\mc{V})\). Then, \(f(x')\in\mc{V}\) for all \(x'\in\B_{\mc{X}}[x;\delta)\). Finally, express using \(d_{\mc{Y}}\) to recover (b).
+	
+	\medskip
+	
+	(b\(\implies\)c) is left as an exercise.
+	
+	\medskip
+	
+	(c\(\implies\)a) We show this by contrapositive, i.e., \((\lnot a)\implies (\lnot c)\). Assume \((\lnot a)\), i.e., \(f\) is \emph{not continuous} at \(x\). Then, for some \(\mc{V}\in\ms{N}_{\mc{Y}}(f(x))\), we have \(x\notin \displaystyle\left(f^{-1}(\mc{V})\right)^{c}\). We then shrink \(\mc{V}\) as necessary to say \(\mc{V}=\B[f(x);\eps)\) for some \(\eps>0\). Now, if \(f^{-1}(\mc{V})\) is \emph{not} a neighbourhood of \(x\), each ball \(\B_{\mc{X}}\left[x;\displaystyle\frac{1}{n}\right)\) must contain a point of \(\left[f^{-1}(\mc{V})\right]^c\); pick one such point and call it \(x_n\): \(f(x_n)\notin\mc{V}\), i.e., \(d_{\mc{Y}}\left(f(x_n),f(x)\right)\geq\eps\), and yet \(d_{\mc{X}}(x_n,x)<\displaystyle\frac{1}{n}\). This sequence \((x_n)\) has \(x_n\to x\in\mc{X}\), but \(f(x_n)\not\to f(x)\in\mc{Y}\). 
+\end{proof}
+\begin{note}[Proof strategies]
+	To \emph{prove} continuity, use (b). To \emph{disprove} continuity, use (c) (\(\lnot(c)\) just requires one sequence.)
+\end{note}

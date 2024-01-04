@@ -1,0 +1,102 @@
+\begin{nquote}{}
+	Some guy: ``So, is that Minkowski addition?"
+	
+	\medskip
+	
+	Dr. Loewen: ``Pfff, I don't know! I know some famous names, and I know Minkowski, but I don't know!" - 10/11/2023
+\end{nquote}
+\subsection*{Homework hints}
+Our aim here is to make \(\displaystyle\liminf_{n\to\infty}x_n\) and \(\displaystyle\limsup_{n\to\infty}x_n\) our main tools. Just writing \(\displaystyle\lim_{n\to\infty}x_n\) requires prior work to show it exists. But \(\limsup x_n\) and \(\liminf x_n\) have values in \(\R\cup\{\pm\infty\}\), so \(\displaystyle\lim_{n\to\infty}x_n\) has meaning (in \(\R\cup\{\pm\infty\}\)) exactly when 
+\begin{equation*}
+	\liminf_{n\to\infty}x_n=\limsup_{n\to\infty}x_n.
+\end{equation*}
+\begin{nlemma}{}
+	If for real sequences \((x_n)\) and \((y_n)\) there exists \(N\in\N\) such that \(x_n\leq y_n\) for all \(n\in\N\), then 
+	\begin{align}
+		\liminf_{n\to\infty}x_n\leq&\liminf_{n\to\infty}y_n\label{inf nstrict}\\
+		\limsup_{n\to\infty}x_n\leq&\limsup_{n\to\infty}y_n\label{sup nstrict}.
+	\end{align}
+\end{nlemma}
+The proof for this is given in the canvas notes, and it is not too involved (just pushing around definitions of the sup and inf.)
+\begin{note}
+	Given that \(x_n<y_n\), it is not enough to say that \cref{inf nstrict} and \cref{sup nstrict} are strict inequalities; that requires more work and is not necessarily always true. One such example is \(x_n=-\displaystyle\frac{1}{n}\) and \(y_n=0\). 
+\end{note}
+Now, we want to show that \(\displaystyle\lim_{n\to\infty}x_n=L\). For a given sequence \((x_n)\) and some \(L\in\R\), it suffices to show that 
+\begin{equation}
+	L\leq \liminf_{n\to\infty}x_n~~\text{and}~~\limsup_{n\to\infty}x_n\leq L\label{L<=liminf limsup<=L}.
+\end{equation}
+It always follows directly that
+\begin{equation*}
+	\liminf_{n\to\infty}x_n\leq \limsup_{n\to\infty}x_n,
+\end{equation*}
+so that is not something we need to mention explicitly.
+
+\medskip
+
+Going back to \cref{L<=liminf limsup<=L}, it is equivalent to show that for all \(\eps>0\),
+\begin{equation*}
+	L-\eps\leq\liminf_{n\to\infty}x_n\leq\limsup_{n\to\infty}x_n\leq L+\eps.
+\end{equation*}
+The idea here is to construct sequences \(a_n\to L\) and \(b_n\to L\), and show that for all \(\eps>0\), there exists \(N\in\N\) such that 
+\begin{equation}
+	a_n-\eps\leq x_n\leq b_n+\eps,~\text{for all}~n\geq N\label{a<=x<=b}.
+\end{equation}
+Once we get \cref{a<=x<=b} we can fix \(\eps>0\) and take \(\limsup/\liminf\) on \(n\) to get \cref{L<=liminf limsup<=L}; this works for arbitrary \(\eps>0\), i.e., it works for all \(\eps>0\), so we are done.
+
+\section{Construction of \(\R\)}
+\begin{notation}
+	We start by defining required notation:
+	\begin{itemize}
+		\item Let \(\operatorname{CS}(\Q)\) be the set of Cauchy sequences with entries in \(\Q\).
+		
+		\item \(x,y,z\) will be typical sequence names, e.g., \(x=(x_1,x_2,x_3,\dots)\).
+		
+		\item Let 
+		\begin{equation*}
+			R[x]=\{x'\in \operatorname{CS}(\Q):\lim_{n\to\infty}|x_n'-x_n|=0\}.
+		\end{equation*}
+		
+		\item Let
+		\begin{equation*}
+			\mc{R}=\{R[x]:x\in\operatorname{CS}(\Q)\},~\text{which is our model for \(\R\)}.
+ 		\end{equation*}
+ 		
+ 		\item Let \(\Phi\st\Q\to\mc{R}\), such that \(\Phi(q)=R[(q_1,q_2,q_3,\dots)]\).
+	\end{itemize}
+\end{notation}
+
+\subsection{Equality}
+For \(x,x'\in\operatorname{CS}(\Q)\) define a relation \(``\sim"\) by 
+\begin{equation*}
+	x'\sim x\iff \lim_{n\to\infty}|x_n'-x_n|=0.
+\end{equation*}
+This is an ``equivalence relation" (these relations are \emph{reflexive, symmetric} and \emph{transitive}), and the sets \(R[x]\) are its equivalence classes.
+
+\subsection{Addition}
+For \(x,y\in\operatorname{CS}(\Q)\), we defined 
+\begin{equation*}
+	x+y=(x_1+y_1,x_2+y_2,x_3+y_3,\dots),
+\end{equation*}
+the result is in \(\operatorname{CS}(\Q)\) (we proved this in homework 4, problem 6(a).) Now we wish to extend the definition to \(\R\):
+\begin{equation*}
+	R[x]+R[y]=R[x+y],\quad\text{where}~x,y\in\operatorname{CS}(\Q).
+\end{equation*}
+\begin{proposition}
+	This \(``+"\) is well defined, i.e., if \(x,x',y,y'\in\text{CS}(\Q)\) obey \(R[x]=R[x']\) and \(R[y]=R[y']\), then \(R[x+y]=R[x'+y']\).
+\end{proposition}
+\begin{proof}
+	With \(x,x',y,y'\) as above, pick any \(z'\in R[x'+y']\) to show \(z'\in R[x+y]\); use the properties:
+	\begin{align*}
+		z'\in R[x'+y']\iff&z_n'-(x_n'+y_n')\to 0\\
+		x'\in R[x']=R[x]\iff&x_n'-x_n\to 0\\
+		y'\in R[y']=R[y]\iff&y_n'y_n\to 0.
+	\end{align*}
+	Thus, we get
+	\begin{align*}
+		z_n'-(x_n+y_n)=&\underbrace{z_n'-(x_n'+y_n')}_{\to 0}+\underbrace{(x_n'-x_n)}_{\to 0}+\underbrace{(y_n'-y_n)}_{\to 0},
+	\end{align*}
+	which is the sum rule for limits, giving us \(z_n'-(x_n+y_n)\to 0\), i.e., \(z'\in R[x+y]\); since \(z'\) is arbitrary, so \(R[x'+y']\subseteq R[x+y]\). The other inclusion can be shown by swapping \((x,y,z)\leftrightarrow(z',y',z')\) above to get
+	\begin{equation*}
+		R[x'+y']\supseteq R[x+y]\implies R[x'+y']=R[x+y].
+	\end{equation*}
+\end{proof}

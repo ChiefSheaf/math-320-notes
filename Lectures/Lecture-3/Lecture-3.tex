@@ -1,0 +1,66 @@
+\begin{nquote}{}
+	``All is fair, if you pre-declare." - Prof. Lowen, 09/11/23
+\end{nquote}
+
+\subsection{Interlude: Well ordering property of \(\N\)}
+Let \(\mc{S}\in \N\) such that \(\mc{S}\neq \varphi\), i.e., there exists \(\hat{s}\in \mc{S}\st\hat{s}\leq s\) for all \(s\in \mc{S}\). We will often use \(\operatorname{min}(\mc{S})\) instead of \(\hat{s}\). This is the basis for the principle of mathematical induction.
+
+\bigskip
+
+Going back to countable sets, we have the following property:
+\begin{property}
+	Every subset of \(\N\) is finite or countable.
+\end{property}
+\begin{proof}
+	Let \(\mc{A}\subseteq\N\). If \(\mc{A}\) is finite, we are done; assume \(\mc{A}\) is infinite. 
+	
+	\medskip
+	
+	Define \(\mc{A}_1=\mc{A}\); since \(\mc{A}\) is infinite, \(\mc{A}\neq \phi\), so let \(a_1=\operatorname{min}(\mc{A}_1)\). Note that \(a_1\geq 1\); define \(\varphi(1)=a_1\).
+	
+	\medskip
+	
+	Now \(\mc{A}\) is infinite, so \(\mc{A}_2:=\mc{A}\backslash\{a_1\}\) is not empty. Let \(a_2=\operatorname{min}(\mc{A}_2)\); define \(\varphi(2)=a_2\). Note \(\varphi(2)=a_2>a_1\), so \(\varphi(s)\geq 2\). Continue with induction.
+	
+	\medskip
+	
+	If step \(n\) has been done, giving \(\varphi(n)=a_n\) with \(\varphi(n)\geq n\), proceed as follows:
+	
+	\medskip
+	
+	Set \(\mc{A}\) is infinite, so \(\mc{A}_{n+1}=\mc{A}\backslash\{a_1,a_2,\dots,a_n\}\) is not empty. Let \(a_{n+1}=\operatorname{min}(\mc{A}_{n+1})\), \(\varphi(n+1)=a_{n+1}\). Note that \(\varphi(n+1)=a_{n+1}\geq n+1\).
+	
+	\medskip
+	
+	Induction defines \(\varphi:\N\to \mc{A}\). We can observe that \(\varphi\) in injective since for \(m\neq n\) (assume WLOG that \(m<n\)) \(\varphi(m)<\phi(n)\) by construction.
+	Similarly, we can observe that \(\varphi\) is surjective; notice that for any \(a\in \mc{A}\), we have \(\varphi(a)\geq a\), so \(a=\varphi(k)\) must have occurred for some stage \(k\), with \(k\geq a\). Hence, we have shown that \(\varphi\) is a bijection, which by extension verifies the definition of ``\(\mc{A}\) is countable".
+\end{proof}
+
+\begin{property}
+	Every subset of \emph{any countable set} is finite or countable.
+\end{property}
+\begin{proof}
+	Let \(\mc{X}\) be a countable set, with a subset \(\mc{S}\). There exists a bijective function \(\varphi\st\N\to \mc{X}\). Define \(f\st\mc{S}\to \N\), such that 
+	\begin{equation*}
+		f(s)=\varphi^{-1}(s),~s\in \mc{S}.
+	\end{equation*}
+	Thus, \(f\) is a bijective map between \(\mc{S}\) and \(f(\mc{S})\subseteq \N\). This implies that \(f(\mc{S})\) is either finite or countable, and hence the same holds for \(\mc{S}\).
+\end{proof}
+\begin{ntheorem}{}
+	Given a set \(\mc{A}\), either (a) or (b) below implies \(\mc{A}\) is finite-or-countable:
+	\begin{enumerate}[(a)]
+		\item There exists a countable set \(\mc{X}\) and an injective function \(f:\mc{A}\to\mc{X}\).
+		
+		\item There exists a countable set \(\mc{X}\) and a surjective function \(g:\mc{X}\to \mc{A}\).
+	\end{enumerate}
+\end{ntheorem}
+More about countable sets:
+\begin{enumerate}[(a)]
+	\item If \(\mc{A}\) and \(\mc{B}\) are countable, then \(\mc{A}\times \mc{B}\) is too.
+	
+	\item Let \(\mathscr{S}_2\) be the collection of subsets of \(\N\) with one or two elements; \(\mathscr{S}_2\) is countable. 
+	
+	\medskip
+	
+	We see that this is true if we construct a map \(f:\underset{\N\times\N}{(m,n)}\to\underset{\mathscr{S}_2}{\{m,n\}}\), and apply part (b) of the theorem.
+\end{enumerate}

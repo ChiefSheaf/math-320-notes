@@ -1,0 +1,51 @@
+\section{Cardinal Numbers}
+\subsection{Sets and Logic (Rudin pp 24-30)}
+\subsubsection{Russel's Paradox}
+We begin by classifying sets:
+\begin{ndef}{: Set classification}
+	A set \(\mc{S}\) is called 
+	\begin{itemize}
+		\item \emph{\textbf{Normal}} if \(\mc{S}\notin \mc{S}\).
+		
+		\item \emph{\textbf{Abnormal}} if \(\mc{S}\in \mc{S}\).
+	\end{itemize}
+	Every set is one or the other.
+\end{ndef}
+Consider \(\ms{N}\), the collection of all normal sets. To classify \(\ms{N}\):
+\begin{itemize}
+	\item  Consider the case when \(\ms{N}\) is normal. By choice of \(\ms{N}\), it has to be abnormal, which is a contradiction.
+	
+	\item In the case where \(\ms{N}\) is abnormal, i.e., \(\ms{N}\in\ms{N}\), we see that \(\ms{N}\) is also normal.
+\end{itemize}
+Clearly, this is a contradiction. The problem here is that the words used to set up \(\ms{N}\) sound like maths, but fall out of the scope for safe logical reasoning. To get around this we will employ the ZFC (Zermelo–Fraenkel Choice) axiomatic system, which we will analyse more comprehensively as the course proceeds.
+
+\clearpage
+
+\section{Mappings}
+\subsection{Cartesian products}
+\begin{ndef}{: Cartesian product}
+	Given sets \(\mc{X}\) and \(\mc{Y}\), a \emph{\textbf{Cartesian product}} builds a new set of ordered pairs 
+	\begin{equation*}
+		\mc{X}\times \mc{Y}=\{(x,y)\st x\in \mc{X},y\in \mc{Y}\}.
+	\end{equation*}
+\end{ndef}
+We can extend this:
+
+\begin{ndef}{: \(n-\)Cartesian product}
+	Given \(\mc{X}_1,\mc{X}_2,\dots,\mc{X}_n\), we define 
+	\begin{align*}
+		\mc{X}_1\times \mc{X}_2\times \dots\times \mc{X}_n=&\{(x_1,x_2,\dots,x_n)\st x_k\in \mc{X}_k~\text{for all}~k\in\{1,2,\dots,n\}\}\\
+		   =&\prod_{k=1}^{n}\mc{X}_k.
+	\end{align*}
+\end{ndef}
+
+\subsection{Multifunctions}
+\begin{ndef}{: Graph}
+	Given any sets \(\mc{X},~\mc{Y}\) any subset \(\mc{G}\) of \(\mc{X},~\mc{Y}\) defines a set-values mapping (or multifunction):
+	\medskip
+	Given \(x\in \mc{X}\) we define 
+	\begin{equation*}
+		\mc{G}(x)=\{y\in \mc{Y}\st (x,y)\in \mc{G}\}.
+	\end{equation*} 
+	\(\mc{G}\) is called the \emph{\textbf{graph}} of this mapping. 
+\end{ndef}

@@ -1,0 +1,109 @@
+\clearpage
+
+\begin{nquote}{}
+	``How about the super on steroids version of the add and subtract trick?" - Dr. Philip Loewen, 09/27/2023
+\end{nquote}
+
+\section{Completeness}
+``The property that makes \(\R\) better than \(\Q\)."
+
+\subsection{Cauchy sequences}
+\begin{ndef}{: Cauchy sequences}
+	Statement 1: A sequence \((x_n)\) is called \emph{\textbf{Cauchy}} when for all \(\eps>0\), there exists \(N\in\N\) such that for all \(m,n\geq N\), we have \(|x_m-x_n|<\eps\).
+	
+	\medskip
+	
+	Statement 2: An equivalent way of saying this is that for all \(\eps>0\), there exists \(N\in\N\) such that for all \(n\geq N\) and \(p\in\N\), we have \(|x_{n+p}-x_n|<\eps\).
+\end{ndef}
+\begin{proposition}
+	Every convergent sequence is Cauchy.
+\end{proposition}
+\begin{proof}
+	We begin by picking a convergent sequence: let \((x_n)\) converge to \(\hat{x}\). Estimate 
+	\begin{align*}
+		|x_n-x_m|=&|(x_n-\hat{x})+(\hat{x}-x_m)|\\
+				 \leq&|x_n-\hat{x}|+|x_m-\hat{x}|.
+	\end{align*}
+	To show that this sequence Cauchy (Statement 1), let \(\eps>0\) be given and use definition of \(x_n\to\hat{x}\) with \(\eps'=\displaystyle\frac{\eps}{2}\) to get \(N\in\N\) such that \(|x_k-\hat{x}|<\eps'\) whenever \(k>N\). This \(N\) works in statement 1, since from what we have shown above, \(m,n\geq\N\implies |x_m-x_n|<\eps'+\eps'=\eps\). 
+\end{proof}
+\begin{corollary}
+	Any sequence that is \emph{not} Cauchy \emph{must} diverge.
+\end{corollary}
+\begin{proof}
+	Contrapositive of the statement above; in general this is a great approach when proving divergence.
+\end{proof}
+\begin{ntheorem}{: Metric completeness}
+	Every Cauchy sequence converges (to a real limit) in \(\R\).
+\end{ntheorem}
+The proof for this is something we will revisit after we have a bit more machinery, which we will now develop.
+\subsection{Bounded sets}
+\begin{ntheorem}{: Order completeness}
+	Given any non-empty \(\mc{S}\subseteq\R\), let \(\mc{A}:=\{a\in\R\st\text{for all}~x\in \mc{S},~a\leq x\}\), \(\mc{B}:=\{b\in\R\st\text{for all}~x\in \mc{S},~x\leq b\}\), then:
+	\begin{enumerate}[(a)]
+		\item Either \(\mc{A}=\emptyset\) or \(\mc{A}=(-\infty,\alpha]\) for some \(\alpha\in\R\).
+		
+		\item Either \(\mc{B}=\emptyset\) or \(\mc{B}=[\beta,\infty)\) for some \(\beta\in\R\).
+	\end{enumerate}
+\end{ntheorem} 
+We say that \(\mc{S}\) is \emph{bounded above} when \(\mc{B}\neq\emptyset\), and call each \(b\in \mc{B}\) an \emph{upper bound for \(\mc{S}\)}.
+
+\medskip
+
+Similarly, \(\mc{S}\) is \emph{bounded below} when \(\mc{A}\neq\emptyset\) each \(a\in \mc{A}\) is a \emph{lower bound for \(\mc{S}\)}. Just the word ``bounded" means ``bounded above" \emph{and} ``bounded below."
+
+\medskip
+
+We now define one of the most important concepts of this course:
+\begin{ndef}{: Supremum}
+	When \(\mc{B}\neq\emptyset\), we call \(\beta\) the \emph{\textbf{supremum}} of \(\mc{S}\), i.e., \(\beta=\text{sup}(\mc{S})\).
+	
+	\medskip
+	
+	Useful characterization:
+	\begin{enumerate}[(i)]
+		\item For all \(x\in \mc{S}\), \(x\leq \beta\) is the same as saying ``\(\beta\) is an \emph{upper bound} for \(\mc{S}\)."
+		
+		\item For all \(\gamma<\beta\), there exists \(x\in \mc{S}\) such that \(\ga<x\), which is the same as saying ``nothing \emph{less than} \(\beta\) is an upper bound." This is why another name for the supremum is \emph{the least upper bound}.
+	\end{enumerate}
+\end{ndef}
+Similarly, we define:
+\begin{ndef}{: Infimum}
+	When \(\mc{A}\neq\emptyset\), \(\alpha=\text{inf}(\mc{S})\) is the \emph{\textbf{infimum}} or \emph{the greatest lower bound} of \(S\).
+\end{ndef}
+\subsection{Monotonic sequences}
+\begin{ntheorem}{: Monotonic sequence property}
+	Given any sequence \((x_n)\) with \(x_1\leq x_2\leq x_3\leq\dots\), either \(x_n\to\infty\) \emph{or} \(x_n\) converges to a real limit.
+\end{ntheorem}
+\begin{note}
+	When we say that \(x_n\to\infty\), we are saying more than just ``the sequence diverges", we are commenting on specifically \emph{how} it diverges.
+\end{note}
+\begin{note}
+	We will prove all these theorems at some point in this course, however, right now we will take them for granted.
+\end{note}
+\begin{note}[Linkages]
+	These 3 viewpoints on completeness contain equivalent information; each one implies the others.
+\end{note}
+Going back to metric completeness, we show one of these linkages:
+\begin{ntheorem}{}
+	Metric completeness (which says Cauchy sequences must converge) implies order completeness (If \(\mc{S}\neq\emptyset\) is bounded above, sup\((\mc{S})\) exists.)
+\end{ntheorem}
+\begin{proof}
+	Let \(\mc{S}\subseteq\R\) be non-empty; define \(\mc{B}=\{b\in\R\st\text{for all}~s\in \mc{S},~s\leq b\}\). Assume \(\mc{B}\neq\emptyset\) and define sequence \(b_n=\operatorname{min}\left\{\mc{B}\cap\left\{\displaystyle\frac{k}{2^n}:~k\in\Z\right\}\right\}\).  This is a Cauchy sequence (we just assert this but this is certainly something we would have to prove in a proof usually.) Thus, \(\beta=\displaystyle\lim_{n\to\infty}b_n\) will have the properties defining sup\((\mc{S})\). For each fixed \(n\), we have 
+	\begin{enumerate}[(i)]
+		\item \(b_n-\displaystyle\frac{1}{2^n}\notin \mc{B}\implies\) there exists \(s_n\in \mc{S}\) such that \(s_n>b_n-\displaystyle\frac{1}{2^n}\).
+		
+		\item \(b_{n+1}\leq b_n\) (minimum over a larger set of points.)  
+		
+		\item Using \(b_{n+1}\in \mc{B}\), we have \(b_{n+1}\geq s_n\) for \(s_n\) above. Using (ii),
+		\begin{equation*}
+			b_{n+1}\geq s_n>b_n-\displaystyle\frac{1}{2^n}\iff 0\leq b_n-b_{n+1}<\displaystyle\frac{1}{2^n}.
+		\end{equation*}
+	\end{enumerate}
+	Now, we estimate
+	\begin{align*}
+		|b_{n+p}-b_n|=&b_n-b_{n+p}\\
+					 =&(b_n-b_{n+1})+(b_{n+1}-b_{n+2})+\dots+(b_{n+p-1}-b_{n+p})\\
+					 <&\frac{1}{2^n}+\frac{1}{2^{n+1}}+\dots+\frac{1}{2^{n+p-1}}+\frac{2}{2^n}.
+	\end{align*}
+	This is the key to showing \((b_n)\) is Cauchy.
+\end{proof}

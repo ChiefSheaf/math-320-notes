@@ -1,0 +1,106 @@
+\(\mc{G}\st \mc{X}\rightrightarrows \mc{Y}\) is built as a subset \(\mc{G}\) of \(\mc{X}\times \mc{Y}\). Denote 
+\begin{equation*}
+	\mc{G}(x)=\{y\in \mc{Y}\st (x,y)\in \mc{G}\}.
+\end{equation*}
+We go on to invent a \(\mc{G}^{-1}=\{(y,x)\st (x,y)\in \mc{G}\}\subseteq \mc{Y}\times \mc{X}\) gives a related \(\mc{G}^{-1}\st \mc{Y}\rightrightarrows \mc{X}\) such that 
+\begin{ndef}{: Pre-image}
+	\begin{align*}
+		\mc{G}^{-1}(y)=&\{x\st (y,x)\in \mc{G}^{-1}\}\\
+		=&\{x\st (y,x)\in \mc{G}\}\\
+		=&\{x\st y\in \mc{G}\}.
+	\end{align*}
+	This is called the \emph{\textbf{pre-image of y}}.
+\end{ndef}
+Now, define \(\operatorname{dom}(\mc{G})=\{x\in \mc{X}\st \mc{G}(x)\neq \phi\}\). Extend this notation to inputs that are \emph{sets}:
+\medskip
+if \(\mc{A}\subseteq \mc{X}\)
+\begin{equation*}
+	\mc{G}(\mc{A})=\bigcup_{a\in \mc{A}}\mc{G}(a),
+\end{equation*} 
+if \(\mc{B}\subseteq \mc{Y}\),
+\begin{align*}
+	\mc{G}^{-1}(\mc{B})=&\bigcup_{b\in \mc{B}}\mc{G}^{-1}(b)\\
+			 =&\{x\in \mc{X}\st \mc{G}(x)\cap \mc{B}\neq \emptyset\}.
+\end{align*}
+
+\medskip
+
+A set-valued map \(\mc{G}\st \mc{X}\rightrightarrows \mc{Y}\) is a \emph{mapping} or \emph{function} when \(\mc{G}(x)\) is a \emph{singleton} (one-point set) for each \(x\in \mc{X}\) (this entails \(\operatorname{dom}(\mc{G})=\mc{X}\).) 
+
+\begin{notation}
+	Indicate  this by writing \(\mc{G}\st \mc{X}\to \mc{Y}\), and simplifying \(\mc{G}(x)=\{y\}\) down to \(\mc{G}(x)=y\).
+\end{notation}
+
+\begin{note}
+	A set \(\mc{G}\) might give a function, but \(\mc{G}^{-1}\) might not.
+\end{note}
+
+\begin{example}
+	Consider the equation \(y=x^2\). Here, \(\mc{X}=\R\), \(\mc{Y}=\R\), and \(\mc{X}\times \mc{Y}=\R^2\). The equation defines a set \(\mc{G}=\{(x,y)|~y=x^2\}\) in the plane that is the graph of the function \(\mc{G}:\R\to \R\) defined by \(\mc{G}(t)=t^2\), \(t\in \R\).
+	\medskip
+	Note that 
+	\begin{align*}
+		\mc{G}^{-1}(4)=&\{x\st \mc{G}(x)=4\}\\
+		=&\{-2,+2\}.
+	\end{align*}
+	Similarly,
+	\begin{align*}
+		\mc{G}^{-1}(0)=&\{x\st \mc{G}(x)=0\}\\
+		=&\{-0,0\}=0.
+	\end{align*}
+	Also, \(\operatorname{dom}(\mc{G}^{-1})=\{y\st y\geq 0\}=[0,\infty)\).
+\end{example}
+Thus, we go on to define a function:
+\begin{ndef}{: Function}
+	Let \(f\st \mc{X}\to \mc{Y}\),
+	\begin{enumerate}
+		\item This \(f\) is one-to-one (injective), i.e., different inputs give different outputs, i.e.,
+		\begin{itemize}
+			\item for all \(x_1,~x_2\in \mc{X}\), \(x_1\neq x_2\) if \(f(x_1)\neq f(x_2)\).
+			
+			\item We can also state the contrapositive: for all \(x_1,~x_2\in \mc{X}\), \(f(x_1)=f(x_2)\implies x_1=x_2\).
+		\end{itemize}
+		
+		\item This \(f\) is \emph{onto} (surjective) when \(f(\mc{X})=\mc{Y}\), i.e., 
+		\begin{itemize}
+			\item for all \(y\in \mc{Y}\), there exists \(x\in \mc{X}\) such that \(f(x)=y\).
+		\end{itemize}
+		
+		\item A function that is \emph{both} one-to-one and onto is called \emph{bijective}.
+	\end{enumerate}
+\end{ndef}
+
+\clearpage
+
+\section{Countability}
+Recall that \(\N=\{0,1,2,3,\dots\}\), are defined to be the natural numbers. 
+\begin{ndef}{: Finite sets}
+	A set \(\mc{A}\) is \emph{\textbf{finite}} if either \(\mc{A}=\phi\) or there exists \(n\) and a bijection \(\varphi\st \{1,2,\dots, n\}\to \mc{A}\).
+\end{ndef}
+
+\begin{notation}
+	\(|\emptyset|=0\), \(|\mc{A}|=n\).
+\end{notation}
+
+This is more or less as expected, but \emph{countable} sets are more interesting.
+\begin{ndef}{: Countable}
+	A set \(\mc{S}\) is \emph{\textbf{countable}} if there is a bijection \(\varphi:~\N\to \mc{S}\). Here, \(|\mc{S}|=\aleph_0\).
+	\begin{example}
+		Consider
+		\begin{enumerate}
+			\item \(\N\) itself; \((\varphi(x)=x)\).
+			
+			\item Hilbert's hotel: \(S=\N\cup\{0\}\); use \(\varphi(n)=n-1\).
+			
+			\item \(\mathbb{Z}=\{\dots,-2,-1,0,1,2,\dots\}\). \newline
+			Use 
+			\begin{equation*}
+				\phi(n)=\begin{cases}
+					\displaystyle-\frac{n}{2}&\text{if \(n\) is even}.\\\\
+					\displaystyle\frac{n-1}{2}&\text{if \(n\) is odd}.
+				\end{cases}
+			\end{equation*} 
+		\end{enumerate}
+	\end{example}
+\end{ndef}
+

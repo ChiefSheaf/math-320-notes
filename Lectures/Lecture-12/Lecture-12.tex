@@ -1,0 +1,82 @@
+\begin{nquote}{}
+	``There's a Halloween joke here; `limb soup.' could be a good math band name." - Dr. Philip Loewen, 10/04/2023
+\end{nquote}
+
+We now continue with actually doing the proof for (c)\(\implies\)(a):
+\begin{proof}
+	Notice that 
+	\begin{equation}
+		|x_n-L|\leq |x-x_{n_k}|+|x_{n_k}-L|.\label{key est}
+	\end{equation}
+	By definition of a Cauchy sequence, for every \(\eps>0\), there exists \(N\in\N\) such that for all \(m,n>N\), we get \(|x_m-x_n|<\displaystyle\frac{\eps}{2}\). Since we have subsequence convergence, we can safely say that for sufficiently large \(K\in\N\), all \(k>K\) gives us \(|x_{n_k}-L|<\displaystyle\frac{\eps}{2}\). Pick some \(\tilde{k}>K\) and \(n>N\) such that \(n_{\tilde{k}}>N\); using \cref{key est}, we get 
+	\begin{align*}
+		|x_n-L|<&|x_n-x_{n_{\tilde{k}}}|+|x_{n_{\tilde{k}}}-L|\\
+			   <&\frac{\eps}{2}+\frac{\eps}{2}=\eps.
+	\end{align*}
+\end{proof}
+
+\subsubsection*{Hunting License}
+It is valid to use completeness in any of the three equivalent forms mentioned above to solve homework or test problems as long as it is cited.
+
+\begin{ncorollary}{: Bolzano-Weierstrass Theorem}
+	Every bounded real sequence has a convergent subsequence.
+\end{ncorollary}
+\begin{note}
+	All of the three completeness properties and the corollary mentioned above only work for the real numbers; these fail for the rational numbers. This is quite apparent since the rational numbers do not have the least upper bound property.
+\end{note}
+
+\subsection{More on the Supremum and Infimum}
+Given a set \(\mc{S}\subseteq\R\), we let \(\mc{B}=\{b\in\R\st\text{for all}~x\in\mc{S},~\text{we have}~x\leq b\}\). What are the possibilities for this set?
+\begin{itemize}
+	\item If \(\mc{S}\) has no upper bound (e.g. \(\mc{S}=\Z\)), then \(\mc{B}=\emptyset\).
+	
+	\item If \(\mc{S}\) has an upper bound, then \(\mc{B}=[\beta,+\infty)\); here \(\beta=\text{sup}(\mc{S})\).
+	
+	\item If \(\mc{S}=\emptyset\), then \(\mc{B}=(-\infty,\infty)\).
+\end{itemize}
+Our aim now is to re-define the supremum to co-define all three cases:
+\begin{itemize}
+	\item If \(\mc{S}\) has no upper bound, then \(\text{sup}(\mc{S})=+\infty\).
+	
+	\item If \(\mc{S}=\emptyset\), then \(\text{sup}(\mc{S})=-\infty\).
+\end{itemize}
+this is symmetric with the infimum:
+\begin{itemize}
+	\item If \(\mc{S}\) has no upper bound, then \(\text{inf}(\mc{S})=-\infty\).
+	
+	\item If \(\mc{S}=\emptyset\), then \(\text{inf}(\mc{S})=+\infty\).
+\end{itemize}
+We have implicitly assumed something here: we have allowed the supremum and infimum to operate on sets that include the extended values \(-\infty\) and \(+\infty\). This is allowed, however it is something that should be acknowledged for the sake of rigour.
+
+\clearpage
+
+\section{The Limes superior and Limes inferior (upper and lower limits)}
+Given a real sequence \((x_n)\), define 
+\begin{align*}
+	\limsup_{n\to\infty}x_n:=&\inf_{n\in\N}\left(\sup_{k\geq n}x_k\right)\\
+	\liminf_{n\to\infty}x_n:=&\sup_{n\in\N}\left(\inf_{k\geq n}x_k\right)
+\end{align*}
+\begin{example}~\newline
+	\begin{enumerate}[(a)]
+		\item Consider \(x_n=\displaystyle\frac{1}{n}\); in this case 
+		\begin{align*}
+			\limsup_{n\to\infty}\frac{1}{n}=&\inf_{n\in\N}\left(\sup\left\{\frac{1}{k}:k\geq n\right\}\right)\\
+			=&\inf_{n\in\N}\left\{\frac{1}{n}\right\}=0.
+		\end{align*}
+		
+		\item Consider \(x_n=(-1)^n+\displaystyle\frac{1}{n}\); in this case 
+		\begin{align*}
+			\limsup_{n\to\infty}x_n=&\inf_{n\in\N}\sup\left\{(-1)^k+\frac{1}{k}:k\geq n\right\}\\
+			=&\inf_{n\in\N}\begin{cases}
+											1+\frac{1}{2j},&\text{if}~k=2j~(\text{even})\\
+											1+\frac{1}{2j-1},&\text{if}~k=2j-1~(\text{odd})
+										\end{cases}\\
+			 =&\inf_{n\in\N}\left\{1+\frac{1}{\left\lceil \frac{n}{2}\right\rceil} \right\}=1.
+		\end{align*}
+		Similarly, 
+		\begin{align*}
+			\liminf_{n\to\infty}x_n=&\sup_{n\in\N}\left(\inf_{k\geq n}(-1)^k+\frac{1}{k}\right)\\
+			=&\sup_{n\in\N}\left\{-1\right\}=-1.
+		\end{align*}
+	\end{enumerate}
+\end{example}

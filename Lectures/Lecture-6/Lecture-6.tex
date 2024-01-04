@@ -1,0 +1,143 @@
+\clearpage
+
+\begin{nquote}{}
+	``I like \(\varepsilon\) over \(\epsilon\) because \(\epsilon\) kind of looks like set membership or Euler's constant\dots but you know we're in Vancouver; this is a place of diversity and inclusion." - Dr. Philip Loewen, 09/18/2023
+	
+	\medskip
+	
+	``Have to stay on topic; the temptation to make cheeky remarks is overwhelming." - Dr. Philip Loewen, 09/18/2023
+\end{nquote}
+
+\section{Numbers and vectors}
+\subsection{Numbers}
+\begin{note}
+	For the moment, we will keep using \(\R\) and \(=,~<,~+,~-,~\times,~\div,~|\cdot|\) as usual. We will construct these things later.
+\end{note}
+
+\begin{property}
+	The Archimedean property:
+	
+	\medskip
+	
+	For all \(r\in\R\), there exists an \(n\in\N\) such that \(n>r\).
+\end{property}
+\begin{corollary}
+	We have the following corollaries for the Archimedean property:
+	\begin{enumerate}[(a)]
+		\item For each real \(\eps>0\), there exists \(n\in\N\) such that \(\displaystyle\frac{1}{n}<\eps\).
+		
+		\item Whenever \(x,~y\in\R\) obey \(y-x>1\), one has \((x,y)\cap\Z\neq\emptyset\).
+		
+		\item Whenever \(a<b\in\R\), both \((a,b)\cap\Q\neq\emptyset\) and \((a,b)\backslash\Q\neq\emptyset\).
+	\end{enumerate}
+\end{corollary}
+\begin{enumerate}[(a)]
+	\item 
+	\begin{proof}
+		Given \(\eps>0\), define \(r=\displaystyle\frac{1}{\eps}\) and apply the Archimedean property: there exists \(n\in\N\) such that 
+		\begin{equation*}
+			n>\frac{1}{\eps}>0\implies\frac{1}{n}<\eps.
+		\end{equation*}
+	\end{proof}
+	
+	\item 
+	\begin{proof}
+		For \(x,y\) as given, let 
+		\begin{equation*}
+			\mc{S}=\{n\in\Z\st n\geq y\}.
+		\end{equation*}
+		Define \(\hat{n}=\operatorname{min}(\mc{S})\). We claim that \(z:=\hat{n}-1\) is in \((x,y)\). This is because 
+		\begin{enumerate}[(i)]
+			\item Definition of \(\hat{n}\) makes \(\hat{n}-1\notin\mc{S}\), i.e., \(z<y\).
+			
+			\item \(\hat{n}\in\mc{S}\implies \hat{n}\geq y\implies z=\hat{n}-1\geq y-1>x\). Thus, \(z>x\).
+		\end{enumerate}
+	\end{proof}
+	
+	\item 
+	\begin{proof}
+		Given \(a<b\), use (a) to get \(n\in\N\) such that 
+		\(\displaystyle\frac{1}{n}<b-a\). So, \(1<nb-na\) and (b) applies: \((na,nb)\cap\Z\neq\emptyset\).
+		
+		\medskip
+		
+		Pick \(m\in\Z\) such that \(na<m<nb\), i.e., \(\displaystyle a<\frac{m}{n}<b\). Now, \(\displaystyle\frac{m}{n}\in(a,b)\cap\Q\). We are done.
+		
+		\medskip
+		
+		In the case of \((a,b)\cap\Q\), it is at most countable, whereas \((a,b)=[(a,b)\cap\Q]\cup[(a,b)\backslash\Q]\) is uncountable. Thus, \((a,b)\backslash\Q\) is uncountable as well, in particular non-empty. 
+	\end{proof}
+\end{enumerate}
+\begin{property}
+	For any \(a,~b\in\R\), exactly one of \(a<b\), \(a=b\), and \(a>b\) is true.
+\end{property}
+\subsection{Vectors}
+\begin{notation}
+	We denote a vector \(``x"\) by \(\mvec{x}\).
+\end{notation}
+As we have defined before, 
+\begin{equation*}
+	\R^k=\underbrace{\R\times\R\times\dots\times\R\times\R}_{k-\text{times}}=\{(x_1,x_2,\dots,x_k)\st\text{each}~x_j\in\R~\text{for}~j=1,\dots,k\}.
+\end{equation*}
+Extend \(+\) as always. 
+
+\medskip
+
+Define scalar multiplication as usual: Let 
+\begin{align*}
+	\ul{x}\cdot\ul{y}=&\sum_{j=1}^{k}x_jy_j\\
+	|\ul{x}|=&\sqrt{\sum_{j=1}^k x_j^2}=\sqrt{\mvec{x}\cdot\mvec{x}}.
+\end{align*}
+\begin{property}
+	These are properties concerning dot products that are worth noting. We try to replace length with the dot product as often as possible since dealing with square roots is almost always trickier.
+	\begin{enumerate}[(i)]
+		\item \(|\mvec{x}|^2=\mvec{x}\cdot\mvec{x}\).
+		
+		\item \(|\mvec{x}\cdot\mvec{y}|\leq|\mvec{x}||\mvec{y}|\) (Schwartz inequality.)
+		
+		\item Triangle inequalities:
+		\begin{enumerate}[(a)]
+			\item \(|\mvec{x}+\mvec{y}|\leq |\mvec{x}|+|\mvec{y}|\).
+			
+			\item \(|\mvec{y}-\mvec{x}|=||\mvec{y}|-|\mvec{x}||\).
+		\end{enumerate}
+	\end{enumerate}
+\end{property}
+\begin{note}
+	\begin{enumerate}[(i)]
+		\item The triangle inequalities are useful in proofs involving \(|\mvec{x}|\).
+		
+		\item Given \(\mvec{x},~\mvec{y}\in\R^k\), consider 
+		\begin{equation*}
+			0\leq |\mvec{x}-t\mvec{y}|^2=(\mvec{x}-t\mvec{y})\cdot(\mvec{x}-t\mvec{y}),
+		\end{equation*}
+		i.e., 
+		\begin{equation*}
+			0\leq \mvec{x}\cdot\mvec{x}-2t\mvec{x}\cdot\mvec{y}+t^2\mvec{y}\cdot\mvec{y}=|\mvec{x}|^2-2t(\mvec{x}+\mvec{y})+t^2|\mvec{y}|^2.
+		\end{equation*}
+		Thus, this quadratic function of \(t\) has at most one root. Quadratic formula  states that discriminant must not be positive, i.e., 
+		\begin{align*}
+			&(-2(\mvec{x}\cdot\mvec{y}))^2-4(|\mvec{x}|^2|\mvec{y}|^2)\leq 0\\
+			\iff& 4(\mvec{x}\cdot\mvec{y})^2\leq 4(|\mvec{x}||\mvec{y}|)^2\\
+			\iff& |\mvec{x}\cdot\mvec{y}|\leq|\mvec{x}||\mvec{y}|.
+		\end{align*}
+		
+		\item Note that, using \(t=-1\) above, we have 
+		\begin{align*}
+			|\mvec{x}+\mvec{y}|^2=&(\mvec{x}+\mvec{y})\cdot(\mvec{x}+\mvec{y})\\
+			=&|\mvec{x}|^2+2|\mvec{x}||\mvec{y}|+|\mvec{y}|^2\\
+			\leq&|\mvec{x}|^2+2|\mvec{x}||\mvec{y}|+|\mvec{y}|^2\\
+			=&(|\mvec{x}|+|\mvec{y}|)^2.
+		\end{align*}
+		We take square roots and substitute \(\mvec{y}=\mvec{z}-\mvec{x}\) to get 
+		\begin{align*}
+			|\mvec{x}+(\mvec{z}-\mvec{x})|\leq& |\mvec{x}|+|\mvec{z}+\mvec{x}|\\
+			|\mvec{z}|-|\mvec{x}|\leq&|\mvec{z}-\mvec{x}|.
+		\end{align*}
+		This works for any \(\mvec{x},~\mvec{y},~\mvec{z}\). Furthermore, 
+		\begin{align*}
+			|\mvec{x}|-|\mvec{z}|\leq& |\mvec{x}-\mvec{z}|\\
+			|\mvec{x}-\mvec{z}|\geq&\operatorname{max}\{|\mvec{z}|-|\mvec{x}|,~|\mvec{x}|-|\mvec{z}|\}=||\mvec{x}|-|\mvec{z}||.
+		\end{align*}
+	\end{enumerate}
+\end{note}

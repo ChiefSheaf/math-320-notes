@@ -1,0 +1,98 @@
+\begin{nquote}{}
+	"Some of you have to do soul-searching and quit." - Philip Loewen, 09/15/2023
+\end{nquote}
+
+\subsection{Cardinal numbers}
+\begin{ndef}{}
+	We write \(\mc{X}\sim \mc{Y}\) if there exists a bijection \(\varphi:\mc{X}\to\mc{Y}\) (say ``\(\mc{X}\sim\mc{Y}\) under \(\varphi\)".)
+\end{ndef}
+\begin{nproposition}{}
+	\(``\sim"\) is called an \emph{\textbf{equivalence relation}}, i.e., for sets \(\mc{X},~\mc{Y},~\mc{Z}\), we have
+	\begin{enumerate}[(a)]
+		\item \(\mc{X}\sim \mc{X}\) (Reflexivity.)
+		
+		\item \(\mc{X}\sim \mc{Y}\implies\mc{Y}\sim\mc{X}\) (Symmetricity.)
+		
+		\item \(\mc{X}\sim\mc{Y},~\mc{Y}\sim\mc{Z}\implies \mc{X}\sim\mc{Z}\) (Transitivity.)
+	\end{enumerate}
+	\begin{notation}
+		\(\mc{X}\sim\mc{Y}\iff\mc{X}\) and \(\mc{Y}\) are equinumerous.
+	\end{notation}
+\end{nproposition}
+\begin{proof}
+	(R) Use \(\varphi(x)\). 
+	
+	\medskip
+	
+	(S) If \(\mc{X}\sim\mc{Y}\) under \(\varphi\), \(\mc{Y}\sim\mc{X}\) under \(\varphi^{-1}\). 
+	
+	\medskip
+	
+	(T) If \(\mc{X}\sim\mc{Y}\) under \(\varphi\) and \(\mc{Y}\sim \mc{Z}\) under \(\psi\), then show \(\mc{X}\sim\mc{Z}\) under \(\psi\circ\varphi\) (would need to prove the composition of a bijection is also a bijection, but already did.)
+\end{proof}
+Invent the symbol \(|\mc{X}|\) for ``the cardinal number of set \(\mc{X}\)" and encode \(\mc{X}\sim \mc{Y}\) with \(|\mc{X}|=|\mc{Y}|\). 
+\begin{note}
+	The equivalence relation here is a specific one; usually the concept of an equivalence relation is very general, but this is how Rudin defines it as well. I guess this is done because we don't require another notion of an equivalence relation in this course.
+\end{note}
+\begin{example}
+	Some examples are:
+	\begin{itemize}
+		\item \(|\{1,~2,~3\}|=|\{a,~b,~c\}|=3\).
+		
+		\item \(|\N|=\aleph_0\).
+		
+		\item \(|\R|=\mathfrak{c}\) (``the continuum".)
+	\end{itemize}
+\end{example}
+We have \(\aleph_0<\mathfrak{c}\). But we have not defined what inequality of cardinals mean.
+\begin{example}
+	\(|\N|=\aleph_0,~|\R|=\mathfrak{c}\), such that \(\mathfrak{c}>\aleph_0\).
+\end{example}
+
+\begin{ndef}{: Cardinal inequalities}
+	Say \(|\mc{X}|\leq |\mc{Y}|\) if there exists an injection \(\varphi\st\mc{X}\to\mc{Y}\) (\(|\mc{Y}|\geq |\mc{X}|\) is the same.) Saying \(|\mc{X}|<|\mc{Y}|\) (strict), i.e., there is no bijection from \(\mc{X}\) to \(\mc{Y}\), i.e., every \(\varphi:\mc{X}\to\mc{Y}\) that's injective cannot also be surjective.
+	
+	\medskip
+	
+	\(|\mc{X}|<|\mc{Y}|\iff |\mc{X}|\leq |\mc{Y}|\) and there are no bijections of \(\mc{X}\) into \(\mc{Y}\), i.e., \(\mc{X}\not\sim \mc{Y}\).
+\end{ndef}
+
+\subsection{Beyond uncountability}
+Given a set \(\mc{X}\), the power set \(\mathscr{P}(\mc{X})=\{\mc{S}\st\mc{S}\subseteq \mc{X}\}\).
+\begin{nproposition}{}
+	For any set \(\mc{X}\), \(|\mc{X}|<|\mathscr{P}(\mc{X})|\).
+	
+	\medskip
+	
+	So, 
+	\begin{equation*}
+		\aleph_0<\mathfrak{c}<|\mathscr{P}(\R)|<|\mathscr{P}(\mathscr{P}(\R))|<\dots
+	\end{equation*}
+	We can see that there is an infinite sequence of strictly increasing cardinal numbers. There are infinitely many ``sizes of infinity" (we know that there are countably many cardinal numbers.) The question of whether there is a cardinal number between \(\aleph_0\) and \(\mathfrak{c}\) is undecidable; both whether there is or there is not is consistent with ZFC. The statement that there is no such cardinal number is called the \textit{continuum hypothesis}. Also, note that \(\mathscr{P}(\N)\sim \R\).
+\end{nproposition}
+\begin{proof}
+	Suppose \(\mc{X}\neq\emptyset\), and let \(f:\mc{X}\to\mathscr{P}(\mc{X})\) be injective; we will show that \(f\) is not surjective.
+	
+	\medskip
+	
+	Define 
+	\begin{equation*}
+		\mc{S}=\{x\in \mc{X}\st x\notin f(x)\}.
+	\end{equation*}
+	\begin{claim}
+		\(\mc{S}\notin f(\mc{X})\).
+	\end{claim}
+	For the sake of contradiction, suppose \(\mc{S}\in f(\mc{X})\). Thus, there exists some \(y\in X\) such that \(f(y)=\mc{S}\); consider cases 
+	\begin{enumerate}
+		\item \(y\in \mc{S}\implies y\in f(y)\implies y\notin f(y)\).
+		
+		\item \(y\notin \mc{S}\implies y\notin f(y)\implies y\in \mc{S}\).
+	\end{enumerate}
+	Thus, assuming \(\mc{S}\in f(\mc{X})\) leads to a contradiction.
+\end{proof}
+\begin{ntheorem}{: Schr\"oder-Berstein theorem}
+	For sets \(\mc{X}\) and \(\mc{Y}\), if \(|\mc{X}|\leq |\mc{Y}|\) and \(|\mc{X}|\geq |\mc{Y}|\), then \(|\mc{X}|=|\mc{Y}|\).
+\end{ntheorem}
+\begin{note}
+	Knowing \(|\mc{X}|\leq |\mc{Y}|\) and \(|\mc{X}|\geq |\mc{Y}|\) does not automatically force \(|\mc{X}|=|\mc{Y}|\). It is in fact, but needs work, and thus the theorem.
+\end{note}

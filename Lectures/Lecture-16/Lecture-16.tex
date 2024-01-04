@@ -1,0 +1,63 @@
+\begin{nquote}{}
+	``Inside the Sauder school of business\dots don't get me started; but outside Sauder professors only wear ties on special occasions. Today is a special occasion." - Dr. Loewen wearing a tie, 10/13/2023
+\end{nquote}
+
+\begin{nproposition}{: Order components- OC}
+	Let \(a,b\in\operatorname{CS}(\Q)\);
+	\begin{enumerate}[(a)]
+		\item If \(R[a]>R[b]\) then there exists \(N\in\N\) such that \(R[a]>\Phi(b_{N})\).
+		
+		\item If \(\Phi(b_k)\geq R[a]\) for all \(k\in\N\), then \(R[a]\leq R[b]\).
+	\end{enumerate}
+\end{nproposition}
+\begin{proof}
+	Note that (b)\(\iff\)(a) by contrapositive, so we just prove (a). Given \(R[a]>R[b]\), there exists \(N_0\in\N\) and \(\Q\ni r>0\) such tat \(a_n>b_n+r\) for all \(n\geq N_0\). Also, \(a,b\in\operatorname{CS}(\Q)\) given \(N_a,N_b\in\N\) such that \(|a_m-a_n|<\displaystyle\frac{r}{10}\) for \(m,n\geq N_a\) and \(|b_m-b_n|<\displaystyle\frac{r}{10}\) for \(m,n\geq N_b\). Let \(N=\operatorname{max}\{N_0,N_a,N_b\}\); for any \(m\geq N\),
+	\begin{align*}
+		b_N=&b_m+(b_N-b_m)\\
+		\leq&b_m+\frac{r}{10}\\
+		\leq&(a_m-r)+\frac{r}{10}\\
+		=&a_m-\frac{9r}{10}<a_m-\frac{r}{2}.
+	\end{align*}
+	Thus, \(b_N<a_m-\displaystyle\frac{1}{2}\) for all \(m\geq N\); we are done.
+\end{proof}
+
+\subsection{Completeness of \(\mc{R}\)}
+\begin{notation}
+	We let \(\alpha=R[a]\), \(\beta=R[b]\) and \(\ga=R[c]\).
+\end{notation}
+\begin{reflection}
+	The mapping \(\Phi:\Q\to\mc{R}\) embeds a ``working copy of \(\Q\)" in \(\mc{R}\). We confirmed \(\Phi(p+q)=\Phi(p)+\Phi(q)\), \(\Phi(p\cdot q)=\Phi(p)\cdot\Phi(q)\), and \(p<q\iff \Phi(p)<\Phi(q)\); everything we want from the rationals is mirrored in \(\text{CS}(\Q)\). Notice that there are some equivalence classes of Cauchy sequences that are not in here: \(\mc{R}\) includes many elements not of the form \(\Phi(q)\) where \(q\in\Q\). 
+	\begin{example}
+		A member of \(\mc{R}:\pi=R[(3,3.1,3.141,3.1415,\dots)]\) is outside \(\Phi(\Q)\).
+	\end{example}
+\end{reflection}
+\begin{ntheorem}{: Completeness of \(\mc{R}\)}
+	Let \(\mc{A}\) be a non-empty subset of \(\mc{R}\) with an upper bound, i.e., there exists \(\mu\in\mc{R}\) such that for all \(\alpha\in\mc{A}\) we have \(\alpha\leq\mu\); there exists \(\beta\in\mc{R}\) such that 
+	\begin{enumerate}[(a)]
+		\item For all \(\alpha\in\mc{A}\), \(\alpha\leq\beta\) (\(\beta\) is an upper bound.)
+		
+		\item For all \(\ga\in\mc{R}\) such that \(\ga<\beta\), there exists \(\alpha\in\mc{A}\) such that \(\ga<\alpha\) (\(\beta\) is te supremum.)
+	\end{enumerate}
+\end{ntheorem}
+\begin{proof}
+	For each \(n\in\N\), define \(b_n=\text{min}(S_n)\) where \(S_n=\left\{\displaystyle\frac{k}{2^n}\st k\in\Z,~\text{for all}~\alpha\in\mc{A},~\Phi\left(\displaystyle\frac{k}{2^n}\geq\alpha\right)\right\}\). By the hypothesis, \(\mu\) is an upper bound for \(\mc{A}\). From Homework 5, we know that there exists some \(K\in\Z\) such that \(\mu<\Phi(K)\). Every \(\displaystyle\frac{k}{2^n}\geq K\) is in \(S_n\). Additionally \(S_n\) has a lower bound (showing this is left as an exercise.) For each \(S_{n}\subseteq S_{n+1}\); so we have \(b_n\geq b_{n+1}\geq b_n-\displaystyle\frac{1}{2^{n+1}}\), or \(0\leq b_n-b_{n+1}\leq\displaystyle\frac{1}{2^{n+1}}\). Therefore if \(p\in\N\), we have \(0\leq b_n-b_{n+p}\leq (b_n-b_{n+1})+\dots +(b_{n+p-1}-b_{n+p})\), which means
+	\begin{align*}
+		0\leq&b_n-b_{n+p}\\
+		\leq& \frac{1}{2^{n+1}}+\frac{1}{2^{n+2}}+\dots+\frac{1}{2^{n-p}}\\
+		\leq&\frac{1}{2^n}\left(\frac{1}{2}+\frac{1}{4}+\dots+\frac{1}{2^p}\right)\\
+		<&\frac{1}{2^n}.
+	\end{align*}
+	Hence, \(b=(b_n)\) is a Cauchy sequence. Since \(\beta=R[b]\), from the definition of \(b_n\in S_n\), \(\Phi(b_n)\geq \alpha\) for all \(\alpha\in\mc{A}\). from OC (b), \(\beta\geq\alpha\) for all \(\alpha\in\mc{A}\); this is conclusion (a).
+	
+	\medskip
+	
+	For (b), let \(\ga<\beta\) and say \(\ga=R[c]\). This comes with \(\Q\ni r>0\), \(N\in\N\) where for all \(n\geq N\), \(c_n+r<b_n\). Increase \(N\) as needed to get \(\displaystyle\frac{1}{2^N}<\frac{r}{2}\). Then, since \(b_n\geq b_{n+1}\), 
+	\begin{equation*}
+		c_n+\frac{r}{2}=(c_n+r)-\frac{r}{2}<b_n-\frac{r}{2}<b_n-\frac{1}{2^N}\leq b_N-\frac{1}{2^N}.
+	\end{equation*}
+	Thus, \(\Phi(c)<\Phi(b_N)\).
+	\begin{note}
+		He forgot about \(\alpha\) and has mentioned that we should check his notes on canvas.
+	\end{note}
+	Therefore, every monotone bounded sequence of these converge. Every Cauchy sequence of these converges. The Archimedean property follows (have to read Canvas notes for this part.)
+\end{proof}

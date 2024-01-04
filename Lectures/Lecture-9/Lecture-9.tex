@@ -1,0 +1,86 @@
+\begin{nlemma}{}
+	If \(x_n\to\hat{x}\) (in \(\R\)), then there exists \(N\in\N\) satisfying 
+	\begin{enumerate}[(a)]
+		\item \(|x_n|\leq |\hat{x}|+1\), for all \(n>N\).
+		
+		\item If, in addition, \(\hat{x}\neq 0\), also \(|x_n|\geq \displaystyle\frac{|\hat{x}|}{2}\), for all \(n>N\).
+	\end{enumerate}
+\end{nlemma}
+\begin{enumerate}[(a)]
+	\item 
+	\begin{proof}
+		If we use the triangle inequality, we have
+		\(|x_n|\leq |x_n-\hat{x}|+|\hat{x}|\) for each \(n\). Picking \(\eps=1\), we apply the definition to find an \(N\in\N\), such that \(|x_n-\hat{x}|<1\) for all \(n\in\N\). This gives us \(|x_n|<1+|\hat{x}|\) for all \(n\in\N\). 
+	\end{proof}
+	
+	\item 
+	\begin{proof}
+		Since \(x_n=\hat{x}-(\hat{x}-x_n)\), using the triangle inequality, we have \(|x_n|\geq |\hat{x}|-|\hat{x}-x_n|\). We let \(\eps=\displaystyle\frac{1}{2}|\hat{x}|>0\) in the definition to get \(\tilde{N}\) such that \(|x_n-\hat{x}|<\displaystyle\frac{1}{2}|\hat{x}|\) when \(n>\tilde{N}\). This does what we require, since
+		\begin{equation*}
+			|x_n|\geq |\hat{x}|-\frac{1}{2}|\hat{x}|=\frac{|\hat{x}|}{2}~\text{for all}~n\in\N.
+		\end{equation*}
+		Here we could have said \(|x_n|\geq |\hat{x}|-\displaystyle\frac{1}{2}|\hat{x}|=\displaystyle\frac{|\hat{x}|}{2}\), however, we only require a non-strict inequality for the lemma. Notice that we can take \(\text{max}\{N,\tilde{N}\}\) to get both (a), (b) together.
+	\end{proof}
+\end{enumerate}
+\begin{proposition}
+	If \(x_n\to\hat{x}\), \(y_n\to\hat{y}\), and \(K\in\R\), then 
+	\begin{enumerate}[(a)]
+		\item \(x_n+Ky_n\to\hat{x}+K\hat{y}\).
+		
+		\item \(x_ny_n\to\hat{x}\hat{y}\).
+		
+		\item \(\displaystyle\frac{x_n}{y_n}\to\displaystyle\frac{\hat{x}}{\hat{y}}\), provided \(\hat{y}\neq 0\).
+	\end{enumerate}
+\end{proposition}
+\begin{enumerate}[(a)]
+	\item 
+	\begin{proof}
+		For each \(n\), 
+		\begin{equation*}
+			|(x_n+Ky_n)-(\hat{x}+K\hat{y})|\leq |x_n-\hat{x}|+|K||y_n-\hat{y}|.
+		\end{equation*}
+		Given \(\eps>0\), we define \(\eps'=\displaystyle\frac{\eps}{2}>0\) and \(\eps''=\displaystyle\frac{\eps}{2(|K|+1)}>0\) and cite definitions of \(x_n\to\hat{x}\), \(y_n\to\hat{y}\) to get \(N',N''\in\N\) such that 
+		\begin{align*}
+			|x_n-\hat{x}|<\eps'=&\frac{\eps}{2},~\text{for all}~n>N'\\
+			|y_n-\hat{y}|<\eps''=&\frac{\eps}{2(|K|+1)},~\text{for all}~n>N''.
+		\end{align*}
+		We define \(N=\operatorname{max}\{N',N''\}\). Every \(n>N\) obeys 
+		\begin{equation*}
+			|(x_n+Ky_n)-(\hat{x}+K\hat{y})|<\frac{\eps}{2}+|K|\left(\frac{\eps}{2(|K|+1)}\right)<2\left(\frac{\eps}{2}\right)=\eps.
+		\end{equation*}
+	\end{proof}
+	
+	\item 
+	\begin{proof}
+		For each \(n\), 
+		\begin{align*}
+			|x_ny_n-\hat{x}\hat{y}|=&|x_ny_n-x_n\hat{y}+x_n\hat{y}-\hat{x}\hat{y}|\\
+			\leq&|x_n||y_n-\hat{y}|+|\hat{y}||x_n-\hat{x}|~(\text{which is from the triangle inequality})\\
+			<&(|\hat{x}|+1)|y_n-\hat{y}|+|\hat{y}||x_n-\hat{x}|~\text{for all \(n>N\), for some \(N\) from previous lemma (a).}
+		\end{align*}
+		From part (a) of this proposition, the sequence in the RHS above converges to 0. Thus, because of the Squeeze theorem, we require that the LHS also converges to 0.
+	\end{proof}
+	\begin{note}
+		If sequences \(a_n\), \(b_n\) have \(|a_n|\leq b_n\) for all \(n\), and \(b_n\to 0\), then \(-b_n<a_n<b_n\) forces \(a_n\to 0\).
+	\end{note}
+	
+	\item 
+	\begin{proof}
+		At first, take \(x_n=1\), we have 
+		\begin{align*}
+			\left|\frac{1}{y_n}-\frac{1}{\hat{y}}\right|=&\left|\frac{y_n-\hat{y}}{y_n\hat{y}}\right|\\
+			=&\frac{1}{|y_n|}\frac{1}{|\hat{y}|}|y_n-\hat{y}|\\
+			<&\frac{2}{|\hat{y}|^2}|y_n-\hat{y}|,
+		\end{align*}
+		for all \(n>N\), where \(N\) is given by part (b) of the previous lemma. We see that RHS\(\to 0\) by part (a) of this proposition, so because of the Squeeze theorem, we require that LHS\(\to 0\). Now, in general, \(\displaystyle\frac{x_n}{y_n}=x_n\left(\displaystyle\frac{1}{y_n}\right)\) is covered by this part and part (b) combined together.
+	\end{proof}
+	\begin{note}
+		If given sequence \(y_n\) has some \(0-\)elements, it will have some undefined terms. But when \(\hat{y}\neq 0\), all \(\displaystyle\frac{x_n}{y_n}\) ``for \(n\) sufficiently large" will be defined. We relax our interpretation to allow this.
+	\end{note}
+\end{enumerate}
+\begin{example}
+	If \(r>0\), \(r^{1/n}\to 1\) as \(n\to\infty\).
+\end{example}
+\begin{proof}[Proof sketch]
+	Squeeze theorem + reciprocal theorem using \(n^{1/n}\to 1\).
+\end{proof}

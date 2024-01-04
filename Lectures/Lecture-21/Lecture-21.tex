@@ -1,0 +1,90 @@
+\begin{nquote}{}
+	``We love our add and subtract trick, we plan to use it for Homework 7 problem 4. We love our telescoping series. What is we did both?" - Dr. Loewen, 10/27/2023
+\end{nquote}
+
+\clearpage
+
+\subsection{Alternating series}
+Most of the series we've been looking at have had all positive terms, now we have ones that include negative terms.
+\begin{ntheorem}{: Alternating series test}
+	If \(S=\displaystyle\sum_{n=0}^{\infty}(-1)^na_n\) and 
+	\begin{enumerate}[(a)]
+		\item \(a_0\geq a_1\geq a_2\geq\dots\)
+		
+		\item \(\displaystyle\lim_{k\to\infty}a_k=0\)
+	\end{enumerate}
+	then \(S\) converges.
+\end{ntheorem}
+\begin{proof}
+	Let \(s_n=\displaystyle\sum_{k=0}^{\infty}(-1)^ka_k\) for \(n\geq 0\). We can envision this as the partial sums going back and forth (alternating) and shrinking at the same time:
+	\begin{equation*}
+		a_1\leq s_3\leq s_5\leq\dots\leq s_6\leq s_4\leq s_2\leq s_0.
+	\end{equation*}
+	Note that the odd partial sums form a monotonically increasing sequence, and the even partial sums form a monotonically decreasing sequence, and clearly both sequences are bounded. Thus, they both converge. However,
+	\begin{equation*}
+		0\leq s_{2n}-s_{2n+1}=a_{2n+1},
+	\end{equation*}
+	which has limit \(0\), so Squeeze theorem (with \(a_k\to 0\)) shows both have the same limit.
+\end{proof}
+\begin{note}
+	Recall from Math 101: any partial sum gives a lower or upper bound on the final value that \(S\) converges to (depending on if it is even or odd); this is a strategy for calculation (not very useful in MATH 320.)
+\end{note}
+
+\subsection{Summation by parts}
+Consider \(\displaystyle\sum_{k=0}^{n}A_kb_k\). Define \(A'_k:=A_k-A_{k-1}\), \(B_n:=b_0+b_1+\dots+b_n\), and \(b_k=B_k'=B_k-B_{k-1}\). Therefore, we have 
+\begin{align*}
+	\sum_{k=0}^{n}A_kb_k=&\sum_{k=0}^{n}A_kB'_k\\
+	  =&A_0b_0+A_1b_1+A_2b_2+\dots+A_nb_n\\
+	  =&A_0B_0+A_1(B_1-B_0)+A_2(B_2-B_1)+\dots+A_n(B_n-B_{n-1})\\
+	  =&(A_0-A_1)B_0+(A_1-A_2)B_1+\dots+(A_{n-1}-A_n)B_{n-1}+A_nB_n\\
+	  =&(-A_1')B_0+(-A_2')B_1+\dots+(-A_n')B_{n-1}+A_nB_n\\
+	  =&A_nB_n-\sum_{k=1}^nA_k'B_{k-1}.
+\end{align*}
+An analogue to this in integration is integration by parts:
+\begin{equation*}
+	\int_a^bu \, dv=uv|_a^b-\int_a^b v \, du;
+\end{equation*}
+hence the name summation by parts.
+
+\begin{ntheorem}{: Dirichlet's test}
+	Consider \(S=\displaystyle\sum_{n=0}^{\infty}a_nb_n\). If 
+	\begin{enumerate}[(a)]
+		\item \(a_n\geq a_{n+1}\) for all \(n\), and \(a_n\to 0\) as \(n\to\infty\),
+		
+		\item \(B_n=b_0+b_1+\dots+b_n\) form a bounded sequence.
+	\end{enumerate}
+	Then, \(S\) converges as well.
+\end{ntheorem}
+\begin{note}
+	If \(b_n=(-1)^n\), this will give us th alternating series test.
+\end{note}
+\begin{proof}
+	Use \(A_k=a_k\) in the summation by parts formula. Look at the partial sums:
+	\begin{equation*}
+		S_n=\sum_{k=0}^na_kb_k=a_nb_n-\sum_{k=1}^n\underbrace{(a_k-a_{k-1})}_{a_k'}B_{k-1}.
+	\end{equation*}
+	Both the right hand side sums converge as \(n\to\infty\). Prove this using assumption (b) first. Let \(C=\sup_k|B_k|\). Then \(|a_nB_n|\leq C|a_n|\to 0\) by (a). For the second piece, use monotonicity:
+	\begin{equation*}
+		\sum_{k=1}^n|(a_k-a_{k-1})B_{k-1}|\leq C\sum_{k=1}^n(a_{k-1}-a_k)=C(a_0-a_n)\leq Ca_0,
+	\end{equation*}
+	where the equality is because this is a telescoping series. Thus, the series \(\displaystyle\sum_{k=1}^{\infty}(a_k-a_{k-1})B_{k-1}\) converges absolutely; hence it must converge.
+\end{proof}
+\begin{note}
+	Dirichlet's test applies to any monotone sequence; it does not have to be monotonically increasing. This makes sense since we can just multiply signs to flip inequalities as required.
+\end{note}
+\begin{note}
+	Professor said that using convergence tests is mostly a homework activity; proving them, however, might show up on the final.
+\end{note}
+
+\subsection{Absolute convergence vs Conditional convergence}
+Recall if \(\displaystyle\sum_{n=1}^{\infty}|a_n|<+\infty\) (absolute convergence), then \(\displaystyle\sum_{n=1}^{\infty}a_n\) converges (and we say it is absolutely convergent.) The converse is not true. Alternating series test shows \(\displaystyle\sum_{n=1}^{\infty}\displaystyle\frac{(-1)^n}{n}\) converges, yet \(\displaystyle\sum_{n=1}^{\infty}\left|\frac{(-1)^n}{n}\right|\) famously diverges. Any series where \(\displaystyle\sum a_n\) converges but \(\displaystyle\sum |a_n|=+\infty\) are called conditionally convergent. 
+
+\subsubsection{Rearrangement}
+Reordering terms is valid for absolutely convergent series, but strange for conditionally convergent ones; for example, let \(S=\displaystyle\sum_{n=0}^{\infty}\displaystyle\frac{(-1)^n}{n}=1-\frac{1}{2}+\frac{1}{3}-\dots\). We build \(\tilde{S}\) using the same pieces, but we shuffle the order;
+\begin{align*}
+	\tilde{S}=&1-\frac{1}{2}-\frac{1}{4}+\frac{1}{3}-\frac{1}{6}-\frac{1}{8}+\frac{1}{5}-\frac{1}{10}-\dots\\
+	=&\left(1-\frac{1}{2}\right)-\frac{1}{4}+\left(\frac{1}{3}-\frac{1}{6}\right)-\frac{1}{8}+\left(\frac{1}{5}+\frac{1}{10}\right)-\\
+	=&\frac{1}{2}\left[1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\dots\right]\\
+	=&\frac{S}{2}.
+\end{align*}
+This is quite an interesting result; one might even say that the sum is ``not abelian" (this means nothing, it is just a group theory trauma-dump joke.)

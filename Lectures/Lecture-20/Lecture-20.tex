@@ -1,0 +1,87 @@
+\begin{nquote}{}
+	``I love WeBWork (sarcastic), I wrote some of those questions, and some of them really lit up Piazza." - Dr. Loewen, 10/25/2023
+\end{nquote}
+
+Now we show that (a)\(\implies\)(b):
+\begin{proof}
+	If \(S\) converges, consider a partial sum for \(T\):
+	\begin{align*}
+		t_n=&\sum_{k=0}^{n}2^ka_{2^k}\\
+		=&a_1+2a_2+4a_4+\dots+2^na_{2^n}\\
+		=&2\left[\frac{1}{2}a_1+a_2+2a_4+\dots+2^{n-1}a_{2^n}\right]\\
+		\leq&2\left[a_1+a_2+(a_3+a_4)+(a_5+a_6+a_7+a_8)+\dots+(a_{2^{n-1}+1}+\dots+a_{2^n})\right]\\
+		\leq&2s_{2^n}\leq 2S.
+	\end{align*}
+	Partial sums for \(T\) are bounded, which implies that \(T\) converges.
+\end{proof}
+
+\subsection{\(p\)-series}
+For fixed \(p\), let 
+\begin{equation*}
+	\zeta(p):=\sum_{n=1}^{\infty}\frac{1}{n^p}.
+\end{equation*}
+We ask ourselves for which \(p\) does this function converge? We can discard all \(p\leq 0\) by the Crude test for divergence. For \(p>0\), the summand decreases, so Cauchy condensation gives us 
+\begin{equation*}
+	\sum_{k=0}^{\infty}\frac{2^k}{(2^k)^p}=\sum_{k=0}^{\infty}\frac{1}{(2^{p-1})^k}.
+\end{equation*}
+This is a geometric series with common ratio \(r=\displaystyle\frac{1}{2^{p-1}}\); we know this converges iff \(r<1\) or \(p>1\).
+\begin{note}
+	The ratio and root test will not help with \(p\)-series; the series converges too slow to detect geometrically, and ratio and root test are not sharp enough to detect this. Because of this, we in fact get 
+	\begin{equation*}
+		\alpha=\limsup_{n\to\infty}|a_n|^{1/n}=\limsup_{n\to\infty}\frac{1}{(n^p)^{1/n}}=\limsup_{n\to\infty}\frac{1}{(n^{1/n})^p}=1.
+	\end{equation*}
+\end{note}
+
+\subsection{Kummer's test}
+\begin{ntheorem}{}
+	Consider \(S=\displaystyle\sum_{n=1}^{\infty}a_n\) such that \(a_n>0\). Let \((D_n)\) be a sequence such that \(D_n>0\) for all \(n\). We define
+	\begin{align*}
+		\ol{L}:=&\limsup_{n\to\infty}\frac{D_ka_k-D_{k+1}a_{k+1}}{a_{k+1}}\\
+		\ul{L}:=&\liminf_{n\to\infty}\frac{D_ka_k-D_{k+1}a_{k+1}}{a_{k+1}}.
+	\end{align*}
+	\begin{enumerate}[(a)]
+		\item If \(\ul{L}>0\), then \(S\) converges.
+		
+		\item If \(\ol{L}<0\) and \(\displaystyle\sum_{n=1}^{\infty}\displaystyle\frac{1}{D_n}=+\infty\), then \(S\) diverges.
+	\end{enumerate}
+\end{ntheorem}
+
+\begin{enumerate}[(a)]
+	\item
+	\begin{proof}
+		If \(\ul{L}>0\), then pick \(r\in(0,\ul{L})\). By definition of \(\liminf\), there exists \(N\in\N\) such that for all \(k\geq N\), \(r<\displaystyle\frac{D_ka_k-D_{k+1}a_{k+1}}{a_{k+1}}\), i.e., \(ra_{k+1}<D_ka_k-D_{k+1}a_{k+1}\). Thus, 
+		\begin{align*}
+			ra_{N+1}&<D_Na_N-D_{N+1}a_{N+1}\\
+			ra_{N+2}&<D_{N+1}a_{N+1}-D_{N+2}a_{N+2}\\
+			&\vdots\\
+			ra_{N+p}&<D_{N+p-1}a_{N+p-1}-D_{N+p}a_{N+p}.
+		\end{align*}
+		Thus, \(r[a_{N+1}+\dots+a_{N+p}]<D_Na_N-D_{N+p}a_{N+p}<D_Na_N\). Since \(N\) is fixed and \(p\in\N\) is arbitrary, we get that the partial sums are bounded, and thus the series converges.
+	\end{proof}
+	
+	\item 
+	\begin{proof}
+		The proof is on canvas, and the idea is similar to the proof for (a).
+	\end{proof}
+\end{enumerate}
+\begin{example}
+	Take \(D_n=1\) in Kummer's test:
+	\begin{align*}
+		\ul{L}=&\liminf_{n\to\infty}\frac{a_k-a_{k+1}}{a_{k+1}}=\liminf_{n\to\infty}\left(\frac{a_k}{a_{k+1}}-1\right)\\
+		\ol{L}=&\limsup_{n\to\infty}\left(\frac{a_k}{a_{k+1}}-1\right)=\left(\frac{1}{\liminf_{n\to\infty}\left(\frac{a_{k+1}}{a_k}\right)}-1\right),
+	\end{align*}
+	as we have shown before on the homework. So, \(\ul{L}=\displaystyle\frac{1}{\alpha}-1\), \(\ol{L}=\displaystyle\frac{1}{\ul{\alpha}}-1\), and we see that we get convergence if \(\ul{\alpha}<1\), and divergence if \(\ul{\alpha}>1\); we have recovered the ratio test. So Kummer's test covers the ratio test.
+\end{example}
+\begin{example}
+	Take \(D_n=n\) in Kummer's test; note that 
+	\begin{equation*}
+		\sum_{n\in\N}\displaystyle\frac{1}{D_n}=\sum_{n\in\N}\frac{1}{n}=+\infty.
+	\end{equation*}
+	Therefore, 
+	\begin{align*}
+		\frac{D_ka_k-D_{k+1}a_{k+1}}{a_{k+1}}=&\frac{ka_k-(k+1)a_{k+1}}{a_{k+1}}\\
+		=&\frac{k(a_k-a_{k+1})-a_{k+1}}{a_{k+1}}\\
+		=&k\left(\frac{a_k}{a_{k+1}}-1\right)-1.
+	\end{align*}
+	Testing the limits of this leads to the refined test named after Raabe; proving this is Homework 7 problem 7.
+\end{example}
