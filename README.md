@@ -1,1 +1,3 @@
-# math-320-notes
+Live notes (with occassional diagram added after class) for the intro analysis course at UBC: MATH 320 - Real variables I. The course follows a slightly varied structure every year depending on the professor teaching it, with the main focus generally being Baby Rudin. Our year was a bit different because we had an increased emphasis on point set topology, and hence deviated quite a bit from Baby Rudin. For the non-topology parts of the course, we supplemented Baby Rudin with "Elementary real analysis" by Thomas, Brucker, and Brucker.
+
+If you find any errors or typos, please don't hesitate to leave a comment.
